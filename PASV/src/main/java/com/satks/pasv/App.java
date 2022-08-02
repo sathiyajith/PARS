@@ -10,16 +10,19 @@ import java.io.IOException;
 
 public class App extends Application {
 
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         Scene landingScene = new Scene(root, 500, 500);
         primaryStage.setScene(landingScene);
+        
+        
+        
         primaryStage.setTitle("PASV");
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         primaryStage.setMaximized(true);
-        
         primaryStage.show();
     }
 

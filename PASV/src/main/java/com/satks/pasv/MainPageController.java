@@ -53,7 +53,7 @@ public class MainPageController implements Initializable {
     {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(page));
-            textArea.getChildren().add(root);
+            textArea.getChildren().setAll(root);
         } catch (IOException ex) {
             Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
         }

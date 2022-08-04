@@ -15,7 +15,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws IOException {
         
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        Scene landingScene = new Scene(root, 500, 500);
+        Scene landingScene = new Scene(root, 1500, 800);
         primaryStage.setScene(landingScene);
         
         

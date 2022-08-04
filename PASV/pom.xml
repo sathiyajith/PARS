@@ -87,7 +87,19 @@
                     <artifactId>javafx-fxml</artifactId>
                     <version>11</version>
                 </dependency>
+                <dependency>
+                    <groupId>de.jensd</groupId>
+                    <artifactId>fontawesomefx</artifactId>
+                    <version>8.9</version>
+                </dependency>
             </dependencies>
         </profile>
     </profiles>
+    <dependencies>
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.9</version>
+        </dependency>
+    </dependencies>
 </project>

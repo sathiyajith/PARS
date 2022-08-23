@@ -1,0 +1,108 @@
+  - alert: BlackboxProbeFailed
+    expr: probe_success == 0
+    for: 0m
+    labels:
+      severity: critical
+      annotations:
+        summary: Blackbox probe failed (instance {{ $labels.instance }})
+          description: "Probe failed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  # This rule can be very noisy in dynamic infra with legitimate container start/stop/deployment.
+  - alert: ContainerAbsent
+    expr: absent(container_last_seen)
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: Container absent (instance {{ $labels.instance }})
+      description: "A container is absent for 5 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: HostOutOfMemory
+    expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: MysqlTooManyConnections(>80%)
+    expr: max_over_time(mysql_global_status_threads_connected[1m]) / mysql_global_variables_max_connections * 100 > 80
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: MySQL too many connections (> 80%) (instance {{ $labels.instance }})
+      description: "More than 80% of MySQL connections are in use on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: ElasticsearchDiskOutOfSpace
+    expr: elasticsearch_filesystem_data_available_bytes / elasticsearch_filesystem_data_size_bytes * 100 < 10
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Elasticsearch disk out of space (instance {{ $labels.instance }})
+      description: "The disk usage is over 90%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: ZookeeperTooManyLeaders
+    expr: sum(zk_server_leader) > 1
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Zookeeper Too Many Leaders (instance {{ $labels.instance }})
+      description: "Zookeeper cluster has too many nodes marked as leader\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: KafkaTopicsReplicas
+    expr: sum(kafka_topic_partition_in_sync_replica) by (topic) < 3
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Kafka topics replicas (instance {{ $labels.instance }})
+      description: "Kafka topic in-sync partition\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: JvmMemoryFillingUp
+    expr: (sum by (instance)(jvm_memory_used_bytes{area="heap"}) / sum by (instance)(jvm_memory_max_bytes{area="heap"})) * 100 > 80
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: JVM memory filling up (instance {{ $labels.instance }})
+      description: "JVM memory is filling up (> 80%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: KubernetesNodeReady
+    expr: kube_node_status_condition{condition="Ready",status="true"} == 0
+    for: 10m
+    labels:
+      severity: critical
+    annotations:
+      summary: Kubernetes Node ready (instance {{ $labels.instance }})
+      description: "Node {{ $labels.node }} has been unready for a long time\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: ConsulMissingMasterNode
+    expr: consul_raft_peers < 3
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Consul missing master node (instance {{ $labels.instance }})
+      description: "Numbers of consul raft peers should be 3, in order to preserve quorum.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: JenkinsOffline
+    expr: jenkins_node_offline_value > 1
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Jenkins offline (instance {{ $labels.instance }})
+      description: "Jenkins offline: `{{$labels.instance}}` in realm {{$labels.realm}}/{{$labels.env}} ({{$labels.region}})\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: VaultSealed
+    expr: vault_core_unsealed == 0
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Vault sealed (instance {{ $labels.instance }})
+      description: "Vault instance is sealed on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

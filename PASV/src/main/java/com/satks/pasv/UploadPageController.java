@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.satks.pasv;
 
-import com.satks.pasv.Prometheus.Prometheus;
-import java.awt.Desktop;
+import com.satks.pasv.Prometheus.AlertManager;
+import com.satks.pasv.Prometheus.ThanosRuleParser;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -23,24 +17,39 @@ import javafx.stage.Stage;
 
 public class UploadPageController implements Initializable {
 
-    @FXML
-    private GridPane uploadpage;
+    
     private Stage stage;
     public String content = null;
-    public Prometheus prometheus;
+    public String configFilePath;
+    public AlertManager alertmanager;
+    public ThanosRuleParser thanos;
     
     @FXML
     private Label filePath;
-    
-    private Desktop desktop = Desktop.getDesktop();
+    @FXML
+    private GridPane uploadpage;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        prometheus = Prometheus.getInstance();
+        if(configFilePath!=null)
+        {
+        filePath.setText(configFilePath);
+        }
     }    
     
     @FXML
-    private void uploadFile(MouseEvent event) throws IOException
+    private void UploadAlertmanagerFile(MouseEvent event) throws IOException
+    {
+        uploadFile(event, "alertmanager");
+    }
+    
+    @FXML
+    private void UploadThanosFile(MouseEvent event) throws IOException
+    {
+        uploadFile(event, "thanos");
+    }
+    
+    private void uploadFile(MouseEvent event,String fileType) throws IOException
     {
         stage = (Stage)uploadpage.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
@@ -51,17 +60,13 @@ public class UploadPageController implements Initializable {
         File file = fileChooser.showOpenDialog(stage);
         if (file!=null)
         {
-            openFile(file);
+            configFilePath = file.getPath();
+            filePath.setText(configFilePath);
+            readFile(file,fileType);
         }
     }
-    
-    private void openFile(File file) throws IOException 
-    {   
-       filePath.setText(file.getPath());
-       readFile(file);
-    }
-    
-    private void readFile(File file) throws IOException
+      
+    private void readFile(File file,String fileType) throws IOException
     {
         FileReader reader = null;
         try {
@@ -80,6 +85,18 @@ public class UploadPageController implements Initializable {
             }
         }
         //System.out.println(content);
-        prometheus.setConfig(content);
+        
+        if(fileType.equals("alertmanager"))
+        {
+            alertmanager = AlertManager.getInstance();
+            alertmanager.setConfig(content);
+        }
+        else
+        {
+            thanos = ThanosRuleParser.getInstance();
+            thanos.setRule(content);
+        }
     }
+
+    
 }

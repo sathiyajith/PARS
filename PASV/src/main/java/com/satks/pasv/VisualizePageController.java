@@ -10,8 +10,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.json.JSONObject;
 
 /**
  * FXML Controller class
@@ -21,23 +27,23 @@ import javafx.scene.layout.VBox;
 public class VisualizePageController implements Initializable {
 
     @FXML
-    private Label alertmanager_routes;
-    @FXML
-    private Label alertmanager_receivers;
-    @FXML
-    private Label thanos_rules;
-    @FXML
     private VBox receiversbox;
     @FXML
     private VBox routesbox;
     @FXML
     private VBox rulesbox;
+    @FXML
+    private HBox visualize_table;
+    @FXML
+    private Button map_button;
+    
     
     public AlertManager alertmanager;
     public ThanosRuleParser thanos;
     public List<AlertManager.Route> routes;
     public List<AlertManager.Receiver> receivers;
     public ArrayList<Alert> rules;
+    private TableView table = new TableView();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,21 +55,43 @@ public class VisualizePageController implements Initializable {
        receivers = alertmanager.getReceivers();
        rules = thanos.getAlerts();
        
-       for (int i = 0; i < routes.size(); i++) 
-       {
-           routesbox.getChildren().add(new Label(routes.get(i).getReceiverName()));
-       }
        
        for (int i = 0; i < receivers.size(); i++) 
        {
-           receiversbox.getChildren().add(new Label(receivers.get(i).getReceiverName()));
+           Label receiver = new Label(receivers.get(i).getReceiverName());
+           receiver.getStyleClass().add("items");
+           receiversbox.getChildren().add(receiver);
        }
        
        for (int i = 0; i < rules.size(); i++) 
        {
-           rulesbox.getChildren().add(new Label(rules.get(i).getAlertName()));
-       }
-       
+           Label rule = new Label(rules.get(i).getAlertName());
+           rule.getStyleClass().add("items");
+           rulesbox.getChildren().add(rule);
+       }      
     }
+    
+    @FXML
+    private void visualize(MouseEvent event)
+    {
+        for (int i = 0; i < receivers.size(); i++) 
+       {
+           TableColumn colName = new TableColumn(receivers.get(i).getReceiverName());
+           table.getColumns().add(colName);
+       }
+        
+        for (int i = 0; i < rules.size(); i++) 
+       {
+           Alert alert = rules.get(i);
+           String alertName = alert.getAlertName();
+           JSONObject labels = alert.getLabels();
+       }
+        
+        
+        visualize_table.getChildren().add(table);
+        
+        
+    }
+    
     
 }

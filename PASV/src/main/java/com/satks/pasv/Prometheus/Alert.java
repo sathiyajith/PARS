@@ -19,4 +19,9 @@ public class Alert {
     {
         return this.alertName;
     }
+    
+    public JSONObject getLabels()
+    {
+        return this.labels;
+    }
 }

@@ -21,6 +21,12 @@ route:
     - matchers:
         - service="database"
       receiver: team-DB-pager
+    - matchers:
+        - severity="critical"
+      receiver: team-critical-pager
+    - matchers:
+        - severity="warning"
+      receiver: team-warning-pager
 inhibit_rules:
   - source_matchers: [severity="critical"]
     target_matchers: [severity="warning"]

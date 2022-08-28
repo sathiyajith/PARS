@@ -24,7 +24,7 @@ python ibm.py
 6. Clicking on compare renders the changes in .txt document.
 
 ## Few Instances of the tool
-<img align="left" width="360" height="300" src="https://github.com/capturemathan/IBM-Hack-Challenge/blob/master/Screenshot%201.png">
+<img align="center" width="500" height="800" src="https://github.com/sathiyajith/PASV/blob/main/res/Architecture%20Diagram.png">
 
 ##  HyperLinks
 Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie]

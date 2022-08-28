@@ -79,7 +79,7 @@
                   </Label>
                   <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0" styleClass="controls-bar">
                      <children>
-                        <Label fx:id="filePath1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0">
+                        <Label fx:id="rulePathFx" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0">
                            <font>
                               <Font size="20.0" />
                            </font>

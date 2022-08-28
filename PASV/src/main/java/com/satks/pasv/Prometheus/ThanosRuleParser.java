@@ -21,7 +21,7 @@ public class ThanosRuleParser {
     
     public ArrayList<Alert> getAlerts()
     {
-        return alertsList;
+        return this.alertsList;
     }
     
     

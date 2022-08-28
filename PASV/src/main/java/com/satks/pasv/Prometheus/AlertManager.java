@@ -25,14 +25,18 @@ public class AlertManager {
             return this.name;
         }
         
+        public String getService()
+        {
+            return this.service;
+        }
     }        
     
     public class Route
     {
-        public List<String> matcherConditions;
+        public List<JSONObject> matcherConditions;
         public String receiverName;
         
-        public Route(String receiverName, List<String> matcherConditions)
+        public Route(String receiverName, List<JSONObject> matcherConditions)
         {
             this.receiverName = receiverName;
             this.matcherConditions = matcherConditions;
@@ -43,14 +47,20 @@ public class AlertManager {
             return this.receiverName;
         }
         
+         public List<JSONObject> getMatcherConditions()
+        {
+            return this.matcherConditions;
+        }
+        
+        
     }
     
     private final List<Receiver> receivers = new ArrayList<>();
     private final List<Route> routes = new ArrayList<>();
     public String config;
-    public String repeat_interval;
-    public String group_interval;
-    public String default_receiver;
+    public String repeatInterval;
+    public String groupInterval;
+    public String defaultReceiver;
     public final static AlertManager instance = new AlertManager();
         
    
@@ -65,6 +75,16 @@ public class AlertManager {
     public String getConfig()
     {
         return this.config;
+    }
+    
+    public String getDefaultReceiver()
+    {
+        return this.defaultReceiver;
+    }
+    
+    public String getRepeatInterval()
+    {
+        return this.repeatInterval;
     }
     
     public void ParseConfig()
@@ -91,16 +111,20 @@ public class AlertManager {
     
     public void setRoutes(JSONObject json)
     {
+        defaultReceiver = json.getJSONObject("route").getString("receiver");
+        repeatInterval = json.getJSONObject("route").getString("repeat_interval");
         JSONArray routesArray = json.getJSONObject("route").getJSONArray("routes");
         for(int i=0;i<routesArray.length();i++)
         {
             JSONObject routeItem = routesArray.getJSONObject(i);
             String receiverName = routeItem.getString("receiver");
             JSONArray matchers = routeItem.getJSONArray("matchers");
-            List<String> matcherConditions = new ArrayList<> ();
+            List<JSONObject> matcherConditions = new ArrayList<> ();
             for(int j=0;j<matchers.length();j++)
             {
-                matcherConditions.add(matchers.getString(j));
+               String[] matcher = matchers.getString(j).split("=");
+               JSONObject matcherObject = new JSONObject().put(matcher[0],matcher[1].replaceAll("~","").replaceAll("\"",""));
+               matcherConditions.add(matcherObject);
             }
             //System.out.println(matcherConditions);
             //System.out.println(receiverService);
@@ -114,12 +138,12 @@ public class AlertManager {
     
     public List<Receiver> getReceivers()
     {
-        return receivers;
+        return this.receivers;
     }
     
     public List<Route> getRoutes()
     {
-        return routes;
+        return this.routes;
     }
     
 }

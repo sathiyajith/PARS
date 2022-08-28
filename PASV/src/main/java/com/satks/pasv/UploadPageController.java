@@ -21,6 +21,7 @@ public class UploadPageController implements Initializable {
     private Stage stage;
     public String content = null;
     public String configFilePath;
+    public String rulePath;
     public AlertManager alertmanager;
     public ThanosRuleParser thanos;
     
@@ -28,12 +29,15 @@ public class UploadPageController implements Initializable {
     private Label filePath;
     @FXML
     private GridPane uploadpage;
+    @FXML
+    private Label rulePathFx;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(configFilePath!=null)
         {
         filePath.setText(configFilePath);
+        rulePathFx.setText(rulePath);
         }
     }    
     
@@ -60,8 +64,6 @@ public class UploadPageController implements Initializable {
         File file = fileChooser.showOpenDialog(stage);
         if (file!=null)
         {
-            configFilePath = file.getPath();
-            filePath.setText(configFilePath);
             readFile(file,fileType);
         }
     }
@@ -90,11 +92,15 @@ public class UploadPageController implements Initializable {
         {
             alertmanager = AlertManager.getInstance();
             alertmanager.setConfig(content);
+            configFilePath = file.getPath();
+            filePath.setText(configFilePath);
         }
         else
         {
             thanos = ThanosRuleParser.getInstance();
             thanos.setRule(content);
+            rulePath = file.getPath();
+            rulePathFx.setText(rulePath);
         }
     }
 

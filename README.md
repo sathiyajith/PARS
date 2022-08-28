@@ -24,7 +24,7 @@ python ibm.py
 6. Clicking on compare renders the changes in .txt document.
 
 ## Few Instances of the tool
-<img align="center" src="https://github.com/sathiyajith/PASV/blob/main/res/Architecture%20Diagram.png">
+<img align="center" width="185" height="190" src="https://github.com/sathiyajith/PASV/blob/main/res/Architecture%20Diagram.png">
 
 ##  HyperLinks
 Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie]

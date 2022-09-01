@@ -1,17 +1,28 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
 .boxes
 {
-    -fx-background-color: #FFDEB4;
+     -fx-background-color: #3F4E4F;
+    -fx-background-radius: 10,10,10;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .titles
 {
-    -fx-font: 20px 'Secular One', sans-serif;
+    -fx-font: 35px 'Secular One', Bree Serif;
 }
 
-.items
-{
-    -fx-font: 10px 'Secular One', sans-serif;
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.items{
+    -fx-background-color: #ffff;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-radius: 5,5,5;
+    -fx-font: 25px 'Secular One', Bree Serif;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }

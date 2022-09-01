@@ -4,26 +4,27 @@
 
 
 .sections{
-    -fx-background-color: #FFDEB4;
-    -fx-background-radius: 15,15,15;
+    -fx-background-color: #3F4E4F;
+    -fx-background-radius: 10,10,10;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .titles{
-    -fx-font: 50px 'Secular One', sans-serif;
+    -fx-font: 35px 'Secular One', sans-serif;
+}
+
+.paths{
+    -fx-font: 25px 'Secular One', sans-serif;
 }
 
 .controls-bar{
-    -fx-background-color: linear-gradient(#FFDEDE 0%, #FFDEDE 25%, #FFDEDE 100%);
+    -fx-background-color: #ffff;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-background-radius: 5,5,5;
 }
 
 .controls{
-    -fx-background-color: 
-        linear-gradient(#CD5C5C	, #F08080),
-        linear-gradient(#FA8072 0%, #E9967A 20%, #FFA07A 100%),
-        linear-gradient(#F08080	0%, #FA8072 50%);
+    -fx-background-color: #3F4E4F;
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: white;

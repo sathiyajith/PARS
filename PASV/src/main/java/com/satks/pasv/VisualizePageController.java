@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.json.JSONObject;
@@ -88,6 +89,7 @@ public class VisualizePageController implements Initializable {
            for(Node x : receiver.getChildren())
            {
                 Label alertLabel = new Label(x.getName());
+                alertLabel.getStyleClass().add("items");
                 receiverBox.getChildren().add(alertLabel);
            }
            visualize_table.getChildren().add(receiverBox);
@@ -98,6 +100,7 @@ public class VisualizePageController implements Initializable {
            for(Node x : defaultReceiver.getChildren())
            {
                 Label alertLabel = new Label(x.getName());
+                alertLabel.getStyleClass().add("items");
                 receiverBox.getChildren().add(alertLabel);
            }
            visualize_table.getChildren().add(receiverBox);

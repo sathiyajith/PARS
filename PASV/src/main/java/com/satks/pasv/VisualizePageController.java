@@ -15,10 +15,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.json.JSONObject;
 
@@ -48,6 +48,7 @@ public class VisualizePageController implements Initializable {
     public static ArrayList<AlertManager.Receiver> receiversList;
     private final static ArrayList<Node> receiverNodeList = new ArrayList<>();
     private String repeatInterval;
+    private VBox receiverBox;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,7 +60,6 @@ public class VisualizePageController implements Initializable {
        routes = alertmanager.getRoutes();
        receivers = alertmanager.getReceivers();
        rules = thanos.getAlerts();
-       
        
        for (int i = 0; i < receivers.size(); i++) 
        {
@@ -83,8 +83,11 @@ public class VisualizePageController implements Initializable {
         for (int i = 0; i < receiverNodeList.size(); i++) 
         {
            Node receiver = receiverNodeList.get(i);
-           VBox receiverBox = new VBox();
+           receiverBox = new VBox();
+           receiverBox.setMaxWidth(Double.MAX_VALUE);
+           receiverBox.getStyleClass().add("columns");
            Label receiverLabel = new Label(receiver.getName());
+           receiverLabel.getStyleClass().add("titles");
            receiverBox.getChildren().add(receiverLabel);
            for(Node x : receiver.getChildren())
            {
@@ -92,18 +95,24 @@ public class VisualizePageController implements Initializable {
                 alertLabel.getStyleClass().add("items");
                 receiverBox.getChildren().add(alertLabel);
            }
+           HBox.setHgrow(receiverBox,Priority.ALWAYS);
            visualize_table.getChildren().add(receiverBox);
          }
-           VBox receiverBox = new VBox();
-           Label receiverLabel = new Label(defaultReceiver.getName());
-           receiverBox.getChildren().add(receiverLabel);
-           for(Node x : defaultReceiver.getChildren())
-           {
+           
+        receiverBox = new VBox();
+        receiverBox.setMaxWidth(Double.MAX_VALUE);
+        receiverBox.getStyleClass().add("columns");
+        Label receiverLabel = new Label(defaultReceiver.getName());
+        receiverLabel.getStyleClass().add("titles");
+        receiverBox.getChildren().add(receiverLabel);
+        for(Node x : defaultReceiver.getChildren())
+        {
                 Label alertLabel = new Label(x.getName());
                 alertLabel.getStyleClass().add("items");
                 receiverBox.getChildren().add(alertLabel);
-           }
-           visualize_table.getChildren().add(receiverBox);
+        }
+        HBox.setHgrow(receiverBox,Priority.ALWAYS);
+        visualize_table.getChildren().add(receiverBox);
         
     }
     

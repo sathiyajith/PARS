@@ -17,9 +17,8 @@
     -fx-background-color: #ffff;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-background-radius: 5,5,5;
-    -fx-font: 15px 'Secular One', Bree Serif;
-    -fx-padding: 5px;
-    -fx-border-insets: 5px;
+    -fx-font: 20px 'Secular One', Bree Serif;
+    -fx-padding: 10px;
     -fx-background-insets: 5px;
 }
 
@@ -39,12 +38,15 @@
 }
 
 .columns{
-    -fx-padding: 5px;
-    -fx-border-insets: 5px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-color: #ffff;
+    -fx-border-width: 3;
 }
 
 .titles{
     -fx-font: 25px 'Righteous';
     -fx-text-fill: white;
     -fx-background-color: #16213E;
+     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-radius: 5,5,5;
 }

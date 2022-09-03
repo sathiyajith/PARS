@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -84,24 +85,26 @@ public class VisualizePageController implements Initializable {
         {
            Node receiver = receiverNodeList.get(i);
            receiverBox = new VBox();
-           receiverBox.setMaxWidth(Double.MAX_VALUE);
            receiverBox.getStyleClass().add("columns");
            Label receiverLabel = new Label(receiver.getName());
            receiverLabel.getStyleClass().add("titles");
+           receiverBox.setMinWidth(300);
+           receiverBox.setAlignment(Pos.TOP_CENTER);
            receiverBox.getChildren().add(receiverLabel);
+           receiverBox.setFillWidth(true);
            for(Node x : receiver.getChildren())
            {
                 Label alertLabel = new Label(x.getName());
                 alertLabel.getStyleClass().add("items");
+                alertLabel.setMinWidth(300);
                 receiverBox.getChildren().add(alertLabel);
            }
-           HBox.setHgrow(receiverBox,Priority.ALWAYS);
            visualize_table.getChildren().add(receiverBox);
-         }
-           
+         } 
         receiverBox = new VBox();
-        receiverBox.setMaxWidth(Double.MAX_VALUE);
         receiverBox.getStyleClass().add("columns");
+        receiverBox.setMinWidth(300);
+        receiverBox.setAlignment(Pos.TOP_CENTER);
         Label receiverLabel = new Label(defaultReceiver.getName());
         receiverLabel.getStyleClass().add("titles");
         receiverBox.getChildren().add(receiverLabel);
@@ -109,9 +112,9 @@ public class VisualizePageController implements Initializable {
         {
                 Label alertLabel = new Label(x.getName());
                 alertLabel.getStyleClass().add("items");
+                alertLabel.setMinWidth(300);
                 receiverBox.getChildren().add(alertLabel);
         }
-        HBox.setHgrow(receiverBox,Priority.ALWAYS);
         visualize_table.getChildren().add(receiverBox);
         
     }

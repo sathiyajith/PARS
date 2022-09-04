@@ -2,26 +2,21 @@
 
 ## Overview
 
-The problem statement is aimed at developing an application to assist developers in debugging code. Method tracing is one of the commonly used post-mortem diagnostic method to identify problems. It consists of timestamp of entry and exit points for each method invocation. They may also contain stack-trace for each invocation. Depending upon the time for which trace data is collected, the file-size for these traces can be huge. Parsing them manually is a time consuming and error-prone task.
+As the name suggests, PASV (Prometheus Alert Simulation and Visualization) is a tool used to simulate and visualize Prometheus alerts. This is built using JavaFx as a Desktop application and runs on wide variety of systems like Windows, macOS and Linux Operating systems.
 
-## Prerequisites
+## Working
+- Alertmanager handles alerts sent by client applications such as Prometheus server. The Alertmanager configuration consists of the Receivers and Routes definitions. 
+- Receivers are the various notification integrations like Slack, Pagerduty, Email, Webhooks etc. that receive notifications when an alert is sent.
+- Routes map the alerts to corresponding receivers based on key-value pairs called MatcherConditions.
+- Alerts are defined in several Thanos rule files with key-value pairs called Labels. These labels must match with the MatcherConditions to reach the correct receiver. If the labels do not match with any of the MatcherConditions, it is directed to the Default Receiver.
+- The frequency of the alert and other features like silencing, inhibition, grouping and repetition are also governed by the Alertmanager configuration.
+- This tool simulates few functionalities of Alertmanager and provides a basic picture of how Alerts are mapped to Receivers.
 
-1. Install Tkinter module for GUI
-```python
-pip install tkinter
-```
-2. Run ibm.py in console
-```python
-python ibm.py
-```
-## Steps to follow
+## Instructions 
 
-1. Browse the .java file in your desired directory.
-2. Generate Xtrace with the help of Xtrace button.
-3. Click on Convert button to convert the file into readable format.
-4. Parse button is clicked to generate .csv file.
-5. After parsing, 2 Xtrace files are browsed from the system.
-6. Clicking on compare renders the changes in .txt document.
+1. Select Upload from the Dashboard and Upload the Alertmanager Config file and Thanos rules file in Upload Page.
+2. Click on Visualize to view the set of receivers and routes.
+3. Click on Map button to map receivers and routes.
 
 ## Few Instances of the tool
 <img align="center" width="555" height="570" src="https://github.com/sathiyajith/PASV/blob/main/res/Architecture%20Diagram.png">

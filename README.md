@@ -22,7 +22,7 @@ As the name suggests, PASV (Prometheus Alert Simulation and Visualization) is a 
 
 ## Few Instances of the tool
 <img align="left" width="490" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
-<img align="right" width="490" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
+<img align="center" width="490" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
 
 ##  HyperLinks :paperclip:
 Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie]

@@ -15,11 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
-/**
- * FXML Controller class
- *
- * @author kssat
- */
 public class MainPageController implements Initializable {
    
     @FXML
@@ -55,7 +50,7 @@ public class MainPageController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource(page));
             textArea.getChildren().setAll(root);
         } catch (IOException ex) {
-            Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger("This page failed to load!! "+page).log(Level.SEVERE, null, ex);
         }
     }
 

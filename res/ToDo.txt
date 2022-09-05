@@ -1,0 +1,12 @@
+ToDo:
+
+1. Dynamically resize elements. Fix the MinWidth, MinHeight, MaxWidth and MaxHeight.
+2. 
+
+Done:
+
+1. Rename fx elements variable name as java elements variable name + Fx.
+2. Place the functions in correct heirarchy.
+3. Indent java files
+4. Comment out unnecessary print lines.
+

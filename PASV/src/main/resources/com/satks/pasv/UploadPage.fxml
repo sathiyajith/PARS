@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #EDDFB3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.satks.pasv.UploadPageController">
    <center>
-      <GridPane fx:id="uploadpage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="uploadpageFx" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -36,7 +36,7 @@
                   </Label>
                   <HBox prefHeight="50.0" prefWidth="1000.0" styleClass="controls-bar">
                      <children>
-                        <Label fx:id="filePath" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" styleClass="paths" text="PATH">
+                        <Label fx:id="configFilePathFx" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" styleClass="paths" text="PATH">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -19,16 +19,19 @@ public class UploadPageController implements Initializable {
 
     
     private Stage stage;
-    public String content = null;
-    public String configFilePath;
-    public String rulePath;
-    public AlertManager alertmanager;
-    public ThanosRuleParser thanos;
+    private String content = null;
+    private String configFilePath;
+    private String rulePath;
+    private AlertManager alertmanager;
+    private ThanosRuleParser thanos;
+    private File file;
+    private FileChooser fileChooser;
+    private FileReader reader;
     
     @FXML
-    private Label filePath;
+    private Label configFilePathFx;
     @FXML
-    private GridPane uploadpage;
+    private GridPane uploadpageFx;
     @FXML
     private Label rulePathFx;
     
@@ -36,8 +39,8 @@ public class UploadPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         if(configFilePath!=null)
         {
-        filePath.setText(configFilePath);
-        rulePathFx.setText(rulePath);
+            configFilePathFx.setText(configFilePath);
+            rulePathFx.setText(rulePath);
         }
     }    
     
@@ -55,13 +58,13 @@ public class UploadPageController implements Initializable {
     
     private void uploadFile(MouseEvent event,String fileType) throws IOException
     {
-        stage = (Stage)uploadpage.getScene().getWindow();
-        FileChooser fileChooser = new FileChooser();
+        stage = (Stage)uploadpageFx.getScene().getWindow();
+        fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("YAML", "*.yaml","*.yml")
             );
-        File file = fileChooser.showOpenDialog(stage);
+        file = fileChooser.showOpenDialog(stage);
         if (file!=null)
         {
             readFile(file,fileType);
@@ -70,7 +73,7 @@ public class UploadPageController implements Initializable {
       
     private void readFile(File file,String fileType) throws IOException
     {
-        FileReader reader = null;
+        reader = null;
         try {
             reader = new FileReader(file);
             char[] chars = new char[(int) file.length()];
@@ -93,7 +96,7 @@ public class UploadPageController implements Initializable {
             alertmanager = AlertManager.getInstance();
             alertmanager.setConfig(content);
             configFilePath = file.getPath();
-            filePath.setText(configFilePath);
+            configFilePathFx.setText(configFilePath);
         }
         else
         {

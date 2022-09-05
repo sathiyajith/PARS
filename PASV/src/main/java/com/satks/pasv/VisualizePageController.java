@@ -14,12 +14,9 @@ import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.json.JSONObject;
 
@@ -31,28 +28,30 @@ import org.json.JSONObject;
 public class VisualizePageController implements Initializable {
 
     @FXML
-    private VBox receiversbox;
+    private VBox receiversBoxFx;
     @FXML
-    private VBox rulesbox;
+    private VBox rulesBoxFx;
     @FXML
-    private HBox visualize_table;
+    private HBox visualizeTableFx;
     
     
-    public static AlertManager alertmanager;
-    public ThanosRuleParser thanos;
-    public List<AlertManager.Route> routes;
-    public List<AlertManager.Receiver> receivers;
-    public ArrayList<Alert> rules;
+    private static AlertManager alertmanager;
+    private ThanosRuleParser thanos;
+    private List<AlertManager.Route> routes;
+    private List<AlertManager.Receiver> receivers;
+    private ArrayList<Alert> rules;
     private final static Node root = new Node("root");
     private static Node defaultReceiver = null;
-    public static ArrayList<Alert> alertsList;
-    public static ArrayList<AlertManager.Receiver> receiversList;
+    private static ArrayList<Alert> alertsList;
+    private static ArrayList<AlertManager.Receiver> receiversList;
     private final static ArrayList<Node> receiverNodeList = new ArrayList<>();
     private String repeatInterval;
     private VBox receiverBox;
     
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
        
        alertmanager = AlertManager.getInstance();
        defaultReceiver = new Node("Default Receiver "+alertmanager.getDefaultReceiver());
@@ -66,65 +65,20 @@ public class VisualizePageController implements Initializable {
        {
            Label receiver = new Label(receivers.get(i).getReceiverName());
            receiver.getStyleClass().add("items");
-           receiversbox.getChildren().add(receiver);
+           receiversBoxFx.getChildren().add(receiver);
        }
        
        for (int i = 0; i < rules.size(); i++) 
        {
            Label rule = new Label(rules.get(i).getAlertName());
            rule.getStyleClass().add("items");
-           rulesbox.getChildren().add(rule);
+           rulesBoxFx.getChildren().add(rule);
        }      
     }
     
-    @FXML
-    private void visualize(MouseEvent event)
+    private void setReceiverNodes(List<AlertManager.Route> routes)
     {
-        map();
-        for (int i = 0; i < receiverNodeList.size(); i++) 
-        {
-           Node receiver = receiverNodeList.get(i);
-           receiverBox = new VBox();
-           receiverBox.getStyleClass().add("columns");
-           Label receiverLabel = new Label(receiver.getName());
-           receiverLabel.getStyleClass().add("titles");
-           receiverBox.setMinWidth(300);
-           receiverBox.setAlignment(Pos.TOP_CENTER);
-           receiverBox.getChildren().add(receiverLabel);
-           receiverBox.setFillWidth(true);
-           for(Node x : receiver.getChildren())
-           {
-                Label alertLabel = new Label(x.getName());
-                alertLabel.getStyleClass().add("items");
-                alertLabel.setMinWidth(300);
-                receiverBox.getChildren().add(alertLabel);
-           }
-           visualize_table.getChildren().add(receiverBox);
-         } 
-        receiverBox = new VBox();
-        receiverBox.getStyleClass().add("columns");
-        receiverBox.setMinWidth(300);
-        receiverBox.setAlignment(Pos.TOP_CENTER);
-        Label receiverLabel = new Label(defaultReceiver.getName());
-        receiverLabel.getStyleClass().add("titles");
-        receiverBox.getChildren().add(receiverLabel);
-        for(Node x : defaultReceiver.getChildren())
-        {
-                Label alertLabel = new Label(x.getName());
-                alertLabel.getStyleClass().add("items");
-                alertLabel.setMinWidth(300);
-                receiverBox.getChildren().add(alertLabel);
-        }
-        visualize_table.getChildren().add(receiverBox);
-        
-    }
-    
-    private void map()
-    {
-        routes = alertmanager.getRoutes();
-        alertsList = thanos.getAlerts();
-         
-         for(int i=0;i<routes.size();i++)
+        for(int i=0;i<routes.size();i++)
          {
             Route route = routes.get(i);
             Node receiverNameNode = new Node(route.getReceiverName());
@@ -158,7 +112,10 @@ public class VisualizePageController implements Initializable {
                 }
             }
          }
-         
+    }
+    
+    private void setRulesNodes(ArrayList<Alert> alertsList)
+    {
          for(int i=0;i<alertsList.size();i++)
          {
             Alert alert = alertsList.get(i);
@@ -169,8 +126,8 @@ public class VisualizePageController implements Initializable {
             {
                 String labelKey = labelKeyObject.toString();
                 String labelValue = labels.getString(labelKey);
-                System.out.println(labelKey);
-                System.out.println(labelValue);
+                //System.out.println(labelKey);
+                //System.out.println(labelValue);
                 if (root.getChild(labelKey)!=null)
                 {
                     if (root.getChild(labelKey).getChild(labelValue)!=null)
@@ -201,6 +158,70 @@ public class VisualizePageController implements Initializable {
                 }
             }
          }
+    }
+    
+    private void map()
+    {
+        routes = alertmanager.getRoutes();
+        alertsList = thanos.getAlerts();
+         
+        setReceiverNodes(routes);
+        setRulesNodes(alertsList);
+    }
+    
+
+        private void fillColumnReceivers()
+    {
+        for (int i = 0; i < receiverNodeList.size(); i++) 
+        {
+           Node receiver = receiverNodeList.get(i);
+           receiverBox = new VBox();
+           receiverBox.getStyleClass().add("columns");
+           receiverBox.setMinWidth(300);
+           receiverBox.setAlignment(Pos.TOP_CENTER);
+           //receiverBox.setFillWidth(true);
+           
+           Label receiverLabel = new Label(receiver.getName());
+           receiverLabel.getStyleClass().add("titles");
+           receiverBox.getChildren().add(receiverLabel);
+           
+           for(Node x : receiver.getChildren())
+           {
+                Label alertLabel = new Label(x.getName());
+                alertLabel.getStyleClass().add("items");
+                alertLabel.setMinWidth(300);
+                receiverBox.getChildren().add(alertLabel);
+           }
+           visualizeTableFx.getChildren().add(receiverBox);
+         } 
+    }
+    
+    private void fillColumnDefaultReceiver()
+    {
+        receiverBox = new VBox();
+        receiverBox.getStyleClass().add("columns");
+        receiverBox.setMinWidth(300);
+        receiverBox.setAlignment(Pos.TOP_CENTER);
+        Label receiverLabel = new Label(defaultReceiver.getName());
+        receiverLabel.getStyleClass().add("titles");
+        receiverBox.getChildren().add(receiverLabel);
+        for(Node x : defaultReceiver.getChildren())
+        {
+                Label alertLabel = new Label(x.getName());
+                alertLabel.getStyleClass().add("items");
+                alertLabel.setMinWidth(300);
+                receiverBox.getChildren().add(alertLabel);
+        }
+        visualizeTableFx.getChildren().add(receiverBox);
+    }
+    
+    @FXML
+    private void visualize(MouseEvent event)
+    {
+        map();
+        fillColumnReceivers();
+        fillColumnDefaultReceiver();
+        
     }
     
 }

@@ -1,7 +1,17 @@
 ToDo:
 
 1. Dynamically resize elements. Fix the MinWidth, MinHeight, MaxWidth and MaxHeight.
-2. 
+2. Add Yaml Validation with the existing SnakeYaml. 
+3. Add "continue: true" logic
+4. Add "+" button and logic to add multiple rule files.
+5. Add Dark mode.
+6. Remove that submit button and add reset button.
+7. Handle UI cases when switched between pages before mapping.
+8. Refactor Data model and reduce mapping complexity.
+9. Make a UI guide with the layout's widths and heights to alter in future.
+10. Add comments.
+11. Make use of other factors like repeat_interval. 
+12. Add FontAwesome icons to buttons.
 
 Done:
 

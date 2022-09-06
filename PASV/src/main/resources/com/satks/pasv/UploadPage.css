@@ -40,3 +40,12 @@
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); 
 }
+
+.delete
+{
+    -fx-background-color: #FF1E00;
+    -fx-background-radius: 50%;
+    -fx-background-insets: 0,1,2;   
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); 
+}

@@ -7,11 +7,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -34,6 +40,8 @@ public class UploadPageController implements Initializable {
     private GridPane uploadpageFx;
     @FXML
     private Label rulePathFx;
+    @FXML
+    private VBox ruleBoxFx;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,6 +113,44 @@ public class UploadPageController implements Initializable {
             rulePath = file.getPath();
             rulePathFx.setText(rulePath);
         }
+    }
+    
+    private void deleteRule()
+    {
+        
+    }
+    
+    @FXML
+    private void addRule(MouseEvent event)
+    {
+        Label path = new Label("PATH");
+        path.setPrefWidth(605);
+        path.getStyleClass().add("paths");
+        
+        Button browse = new Button("BROWSE");
+        browse.setPrefHeight(30);
+        browse.setPrefWidth(100);
+        browse.getStyleClass().add("controls");
+        
+        Button submit = new Button("SUBMIT");
+        submit.setPrefHeight(30);
+        submit.setPrefWidth(100);
+        submit.getStyleClass().add("controls");
+        
+        HBox controlBox = new HBox();
+        controlBox.getStyleClass().add("controls-bar");
+        controlBox.setPrefHeight(50);
+        controlBox.setPrefWidth(900);
+        controlBox.setPadding(new Insets(15,15,15,15));
+        
+        controlBox.getChildren().add(path);
+        controlBox.getChildren().add(browse);
+        controlBox.getChildren().add(submit);
+        controlBox.setSpacing(10);
+        
+        ruleBoxFx.getChildren().add(controlBox);
+        ruleBoxFx.setSpacing(10);
+        ruleBoxFx.setPadding(new Insets(10,10,10,10));
     }
 
     

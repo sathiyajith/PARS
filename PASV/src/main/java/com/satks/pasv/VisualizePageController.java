@@ -220,8 +220,9 @@ public class VisualizePageController implements Initializable {
     {
         map();
         fillColumnReceivers();
-        fillColumnDefaultReceiver();
-        
+        fillColumnDefaultReceiver();  
     }
+    
+    
     
 }

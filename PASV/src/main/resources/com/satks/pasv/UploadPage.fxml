@@ -83,7 +83,7 @@
                         </Label>
                         <HBox prefHeight="50.0" prefWidth="950.0" styleClass="controls-bar">
                            <children>
-                              <Label fx:id="rulePathFx" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" styleClass="paths" text="PATH">
+                              <Label fx:id="rulePathFx0" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" styleClass="paths" text="PATH">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

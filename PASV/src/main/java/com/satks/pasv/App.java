@@ -10,11 +10,13 @@ import java.io.IOException;
 
 public class App extends Application {
 
+    public static int numRules = 0;
+    public static Parent root;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         Scene landingScene = new Scene(root, 1500, 800);
         primaryStage.setScene(landingScene);
         primaryStage.setTitle("PASV");

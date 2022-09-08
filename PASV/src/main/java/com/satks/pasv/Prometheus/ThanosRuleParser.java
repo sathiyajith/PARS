@@ -2,12 +2,11 @@
 package com.satks.pasv.Prometheus;
 
 import java.util.ArrayList;
-import java.util.Map;
 import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
 public class ThanosRuleParser {
-    
+       
     public String rulefile;
     public ArrayList<Alert> alertsList = new ArrayList<>();
     public final static ThanosRuleParser instance = new ThanosRuleParser();
@@ -15,8 +14,7 @@ public class ThanosRuleParser {
   
     public void setRule(String rulefile)
     {
-        this.rulefile = removeUnwantedLines(rulefile);
-        ParseConfig();
+        ParseConfig(removeUnwantedLines(rulefile));
     }
     
     public ArrayList<Alert> getAlerts()
@@ -35,10 +33,10 @@ public class ThanosRuleParser {
     
     
     
-    public void ParseConfig()
+    public void ParseConfig(String rulefile)
     {
         Yaml yaml = new Yaml();
-        ArrayList obj = yaml.load(this.rulefile);
+        ArrayList obj = yaml.load(rulefile);
         //System.out.println(obj);
         
         for(int i=0;i<obj.size();i++)

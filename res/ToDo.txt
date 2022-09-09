@@ -13,6 +13,8 @@ ToDo:
 11. Make use of other factors like repeat_interval. 
 12. Add FontAwesome icons to buttons.
 13. Refactor to "PARS" (Prometheus Alerts Routing Simulation)
+14. Make a lot of input testcases and test with them.
+15. Pertain values while switching pages.
 
 Done:
 

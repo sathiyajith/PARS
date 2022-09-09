@@ -1,8 +1,8 @@
-# PASV  :star:
+# PARS  :star:
 
 ## Overview
 
-As the name suggests, PASV (Prometheus Alert Simulation and Visualization) is a tool used to simulate and visualize Prometheus alerts. This is built using JavaFx as a Desktop application and runs on wide variety of systems like Windows, macOS and Linux Operating systems.
+As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used to simulate Prometheus alerts. This is built using JavaFx as a Desktop application and runs on wide variety of systems like Windows, macOS and Linux Operating systems.
 
 ## Working :gear:
 - Alertmanager handles alerts sent by client applications such as Prometheus server. The Alertmanager configuration consists of the Receivers and Routes definitions. 

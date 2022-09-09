@@ -3,15 +3,16 @@ ToDo:
 1. Dynamically resize elements. Fix the MinWidth, MinHeight, MaxWidth and MaxHeight.
 2. Add Yaml Validation with the existing SnakeYaml. 
 3. Add "continue: true" logic
-4. Add "+" button and logic to add multiple rule files.
-5. Add Dark mode.
-6. Remove that submit button and add reset button.
-7. Handle UI cases when switched between pages before mapping.
-8. Refactor Data model and reduce mapping complexity.
-9. Make a UI guide with the layout's widths and heights to alter in future.
-10. Add comments.
-11. Make use of other factors like repeat_interval. 
-12. Add FontAwesome icons to buttons.
+4. Add Dark mode.
+5. Remove that submit button and add reset button.
+6. Handle UI cases when switched between pages before mapping.
+7. Refactor Data model and reduce mapping complexity.
+8. Make a UI guide with the layout's widths and heights to alter in future.
+9. Add comments.
+10. Make use of other factors like repeat_interval. 
+11. Add FontAwesome icons to buttons.
+12. Make a lot of input testcases and test with them.
+13. Pertain values while switching pages.
 
 Done:
 
@@ -19,4 +20,5 @@ Done:
 2. Place the functions in correct heirarchy.
 3. Indent java files
 4. Comment out unnecessary print lines.
-
+5. Refactor to "PARS" (Prometheus Alerts Routing Simulation)
+6. Add "+" button and logic to add multiple rule files.

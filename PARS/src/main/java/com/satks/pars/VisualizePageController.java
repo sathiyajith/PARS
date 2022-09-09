@@ -1,11 +1,11 @@
 
-package com.satks.pasv;
+package com.satks.pars;
 
-import com.satks.pasv.Prometheus.Alert;
-import com.satks.pasv.Prometheus.AlertManager;
-import com.satks.pasv.Prometheus.AlertManager.Route;
-import com.satks.pasv.Prometheus.ThanosRuleParser;
-import com.satks.pasv.Prometheus.Node;
+import com.satks.pars.Prometheus.Alert;
+import com.satks.pars.Prometheus.AlertManager;
+import com.satks.pars.Prometheus.AlertManager.Route;
+import com.satks.pars.Prometheus.ThanosRuleParser;
+import com.satks.pars.Prometheus.Node;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

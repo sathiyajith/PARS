@@ -1,5 +1,5 @@
 
-package com.satks.pasv.Prometheus;
+package com.satks.pars.Prometheus;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

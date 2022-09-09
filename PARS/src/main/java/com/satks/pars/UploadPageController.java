@@ -1,13 +1,15 @@
-package com.satks.pasv;
+package com.satks.pars;
 
-import com.satks.pasv.Prometheus.AlertManager;
-import com.satks.pasv.Prometheus.ThanosRuleParser;
+import com.satks.pars.Prometheus.AlertManager;
+import com.satks.pars.Prometheus.ThanosRuleParser;
+import com.satks.pars.App;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,17 +41,10 @@ public class UploadPageController implements Initializable {
     @FXML
     private GridPane uploadpageFx;
     @FXML
-    private Label rulePathFx;
-    @FXML
     private VBox ruleBoxFx;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(configFilePath!=null)
-        {
-            configFilePathFx.setText(configFilePath);
-            rulePathFx.setText(rulePath);
-        }
     }    
     
     @FXML
@@ -111,26 +106,35 @@ public class UploadPageController implements Initializable {
             thanos = ThanosRuleParser.getInstance();
             thanos.setRule(content);
             rulePath = file.getPath();
+            Label rulePathFx = (Label)App.root.lookup("#rulePathFx"+App.numRules);
             rulePathFx.setText(rulePath);
         }
     }
     
-    private void deleteRule()
-    {
-        
-    }
     
     @FXML
     private void addRule(MouseEvent event)
     {
+        App.numRules+=1;
         Label path = new Label("PATH");
         path.setPrefWidth(605);
         path.getStyleClass().add("paths");
+        path.setId("rulePathFx"+App.numRules);
         
         Button browse = new Button("BROWSE");
         browse.setPrefHeight(30);
         browse.setPrefWidth(100);
         browse.getStyleClass().add("controls");
+        browse.setOnMouseClicked(new EventHandler<MouseEvent>() { 
+            @Override 
+            public void handle(MouseEvent event) { 
+                try {
+                    UploadThanosFile(event);
+                } catch (IOException ex) {
+                    Logger.getLogger("Dynamic Browse button's handler not handled properly").log(Level.SEVERE, null, ex);
+                }
+            } 
+        });
         
         Button submit = new Button("SUBMIT");
         submit.setPrefHeight(30);

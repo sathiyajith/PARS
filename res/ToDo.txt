@@ -12,6 +12,7 @@ ToDo:
 10. Add comments.
 11. Make use of other factors like repeat_interval. 
 12. Add FontAwesome icons to buttons.
+13. Refactor to "PARS" (Prometheus Alerts Routing Simulation)
 
 Done:
 

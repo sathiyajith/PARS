@@ -106,8 +106,8 @@ public class UploadPageController implements Initializable {
             thanos = ThanosRuleParser.getInstance();
             thanos.setRule(content);
             rulePath = file.getPath();
-            //Label rulePathFx = (Label)App.root.lookup("rulePathFx"+App.numRules);
-            //rulePathFx.setText(rulePath);
+            Label rulePathFx = (Label)App.root.lookup("#rulePathFx"+App.numRules);
+            rulePathFx.setText(rulePath);
         }
     }
     

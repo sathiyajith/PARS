@@ -43,22 +43,13 @@ public class UploadPageController implements Initializable {
     @FXML
     private VBox ruleBoxFx;
     
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
-    
-    @FXML
-    private void UploadAlertmanagerFile(MouseEvent event) throws IOException
+    public void initialize(URL url, ResourceBundle rb) 
     {
-        uploadFile(event, "alertmanager");
-    }
-    
-    @FXML
-    private void UploadThanosFile(MouseEvent event) throws IOException
-    {
-        uploadFile(event, "thanos");
-    }
-    
+        
+    }  
+   
     private void uploadFile(MouseEvent event,String fileType) throws IOException
     {
         stage = (Stage)uploadpageFx.getScene().getWindow();
@@ -73,7 +64,7 @@ public class UploadPageController implements Initializable {
             readFile(file,fileType);
         }
     }
-      
+        
     private void readFile(File file,String fileType) throws IOException
     {
         reader = null;
@@ -93,15 +84,37 @@ public class UploadPageController implements Initializable {
             }
         }
         //System.out.println(content);
-        
-        if(fileType.equals("alertmanager"))
+    }
+    
+    
+    @FXML
+    private void UploadAlertmanagerFile(MouseEvent event) throws IOException
+    {
+        uploadFile(event, "alertmanager");
+    }
+    
+    @FXML
+    private void UploadThanosFile(MouseEvent event) throws IOException
+    {
+        uploadFile(event, "thanos");
+    }
+    
+    @FXML
+    private void SubmitAlertmanagerFile(MouseEvent event)
+    {
+        if(content.isEmpty()==false)
         {
             alertmanager = AlertManager.getInstance();
             alertmanager.setConfig(content);
             configFilePath = file.getPath();
             configFilePathFx.setText(configFilePath);
         }
-        else
+    }
+    
+    @FXML
+    private void SubmitThanosFile(MouseEvent event)
+    {
+        if(content.isEmpty()==false)
         {
             thanos = ThanosRuleParser.getInstance();
             thanos.setRule(content);
@@ -110,7 +123,6 @@ public class UploadPageController implements Initializable {
             rulePathFx.setText(rulePath);
         }
     }
-    
     
     @FXML
     private void addRule(MouseEvent event)
@@ -140,6 +152,12 @@ public class UploadPageController implements Initializable {
         submit.setPrefHeight(30);
         submit.setPrefWidth(100);
         submit.getStyleClass().add("controls");
+        submit.setOnMouseClicked(new EventHandler<MouseEvent>() { 
+            @Override 
+            public void handle(MouseEvent event) { 
+                SubmitThanosFile(event);
+            } 
+        });
         
         HBox controlBox = new HBox();
         controlBox.getStyleClass().add("controls-bar");
@@ -156,6 +174,12 @@ public class UploadPageController implements Initializable {
         ruleBoxFx.setSpacing(10);
         ruleBoxFx.setPadding(new Insets(10,10,10,10));
     }
+    
+ 
+
+    
+    
+
 
     
 }

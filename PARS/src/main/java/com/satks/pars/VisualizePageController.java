@@ -6,15 +6,21 @@ import com.satks.pars.Prometheus.AlertManager;
 import com.satks.pars.Prometheus.AlertManager.Route;
 import com.satks.pars.Prometheus.ThanosRuleParser;
 import com.satks.pars.Prometheus.Node;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -47,7 +53,8 @@ public class VisualizePageController implements Initializable {
     private final static ArrayList<Node> receiverNodeList = new ArrayList<>();
     private String repeatInterval;
     private VBox receiverBox;
-    
+    private ImageView serviceImageView;
+    private FileInputStream imageStream;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -63,7 +70,44 @@ public class VisualizePageController implements Initializable {
        
        for (int i = 0; i < receivers.size(); i++) 
        {
-           Label receiver = new Label(receivers.get(i).getReceiverName());
+           if (receivers.get(i).getService().equals("email_configs"))
+           {
+               try { 
+                   imageStream = new FileInputStream("D:\\code\\GITHUB_Projects\\PARS\\res\\mail.png");
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger("Cannot open mail image");
+               }
+           }
+           else if(receivers.get(i).getService().equals("pagerduty_configs"))
+           {
+               try {
+                   imageStream = new FileInputStream("D:\\code\\GITHUB_Projects\\PARS\\res\\pagerduty.png");
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger("Cannot open pd image");
+               }
+           }
+           else if(receivers.get(i).getService().equals("slack_configs"))
+           {
+               try {
+                   imageStream = new FileInputStream("D:\\code\\GITHUB_Projects\\PARS\\res\\slack.png");
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger("Cannot open slack image");
+               }
+           }
+           else if(receivers.get(i).getService().equals("webhook_configs"))
+           {
+               try {
+                   imageStream = new FileInputStream("D:\\code\\GITHUB_Projects\\PARS\\res\\webhook.png");
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger("Cannot open webhook image");
+               }
+           }
+           serviceImageView = new ImageView(new Image(imageStream));
+           serviceImageView.setFitHeight(40);
+           serviceImageView.setFitWidth(40);
+           Label receiver = new Label(receivers.get(i).getReceiverName(), serviceImageView);
+           receiver.setPrefWidth(500);
+           receiver.setPrefHeight(500);
            receiver.getStyleClass().add("items");
            receiversBoxFx.getChildren().add(receiver);
        }
@@ -72,6 +116,8 @@ public class VisualizePageController implements Initializable {
        {
            Label rule = new Label(rules.get(i).getAlertName());
            rule.getStyleClass().add("items");
+           rule.setPrefWidth(500);
+           rule.setPrefHeight(500);
            rulesBoxFx.getChildren().add(rule);
        }      
     }

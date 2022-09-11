@@ -10,42 +10,49 @@ route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 3h
-  receiver: X-mails
+  receiver: team-X-mails
   routes:
     - matchers:
         - service=~"foo1|foo2|baz"
-      receiver: X-mails
+      receiver: team-X-mails
     - matchers:
-        - service="files"
-      receiver: Y-mails
+        - service=~"zookeeper"
+      receiver: team-X-slacks
     - matchers:
         - service="database"
-      receiver: team-DB-pager
+      receiver: team-DB-pagers
     - matchers:
         - severity="critical"
-      receiver: team-critical-pager
+      receiver: team-critical-webhooks
     - matchers:
         - severity="warning"
-      receiver: team-warning-pager
+        - pod="kafka"
+      receiver: team-warning-webhooks
 inhibit_rules:
   - source_matchers: [severity="critical"]
     target_matchers: [severity="warning"]
     equal: [alertname, cluster, service]
 receivers:
-  - name: 'team-X-mails'
-    email_configs:
+  - name: 'team-X-slacks'
+    slack_configs:
       - to: 'team-X+alerts@example.org'
-  - name: 'team-X-pager'
+  - name: 'team-X-mails'
     email_configs:
       - to: 'team-X+alerts-critical@example.org'
     pagerduty_configs:
       - service_key: <team-X-key>
-  - name: 'team-Y-mails'
-    email_configs:
+  - name: 'team-Y-slacks'
+    slack_configs:
       - to: 'team-Y+alerts@example.org'
-  - name: 'team-Y-pager'
+  - name: 'team-X-pagers'
     pagerduty_configs:
       - service_key: <team-Y-key>
-  - name: 'team-DB-pager'
+  - name: 'team-DB-pagers'
     pagerduty_configs:
+      - service_key: <team-DB-key>
+  - name: 'team-critical-webhooks'
+    webhook_configs:
+      - service_key: <team-DB-key>
+  - name: 'team-warning-webhooks'
+    webhook_configs:
       - service_key: <team-DB-key>

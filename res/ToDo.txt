@@ -4,15 +4,18 @@ ToDo:
 2. Add Yaml Validation with the existing SnakeYaml. 
 3. Add "continue: true" logic
 4. Add Dark mode.
-5. Remove that submit button and add reset button.
-6. Handle UI cases when switched between pages before mapping.
-7. Refactor Data model and reduce mapping complexity.
+5. Add reset button.
+6. Handle UI cases when switched between pages before mapping and pertain values.
+7. Lookout for better Data model and reduce mapping complexity.
 8. Make a UI guide with the layout's widths and heights to alter in future.
 9. Add comments.
 10. Make use of other factors like repeat_interval. 
 11. Add FontAwesome icons to buttons.
-12. Make a lot of input testcases and test with them.
-13. Pertain values while switching pages.
+12. Design other pages.
+13. Add logic for inhibit_rules (But that is tough, since you have to filter and disable.)
+14. Finetune regular expressions
+15. Add cool svgs
+16. Learn and do the build.
 
 Done:
 
@@ -22,3 +25,4 @@ Done:
 4. Comment out unnecessary print lines.
 5. Refactor to "PARS" (Prometheus Alerts Routing Simulation)
 6. Add "+" button and logic to add multiple rule files.
+7. Make a lot of input testcases and test with them.

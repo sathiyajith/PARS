@@ -1,4 +1,17 @@
-function doShit()
+function submitMessage()
 {
- window.open('https://www.google.com','_blank');
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+    
+    var design_rating = document.querySelector('input[name="design"]:checked').value;
+    var impl_rating = document.querySelector('input[name="impl"]:checked').value;
+    
+    //console.log(name);
+    //console.log(email);
+    //console.log(message);
+    //console.log(design_rating);
+    //console.log(impl_rating);
+    var content = `From: ${name} \nEmail: ${email} \nDesign rating: ${design_rating} \nImplementation :${impl_rating}`;
+    window.location.href="www.google.com";
 }

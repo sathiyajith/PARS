@@ -4,10 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="FeedbackPage.css">
         <link rel="stylesheet" href="bulma.min.css">
         <script src="FeedbackPage.js"></script>
+        <script src="https://kit.fontawesome.com/5004a071a1.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -21,69 +23,102 @@
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
-                        <input class="input" type="text">
+                        <input class="input" id="name" type="text">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input class="input" type="email">
+                        <input class="input" id="email" type="email">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Message</label>
                     <div class="control">
-                        <textarea class="textarea"></textarea>
+                        <textarea class="textarea" id="message" rows="2" placeholder="Any suggestions"></textarea>
                     </div>
                 </div>
 
                 <div class="field">
+                    <label class="label">
+                        Design
+                    </label>
                     <div class="control">
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            I agree to the <a href="#">terms and conditions</a>
+                        <label class="radio">
+                            <input type="radio" name="design" value="Design is not good bro! You gotta improve.">
+                           <i class="fa-solid fa-face-frown large"></i>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="design" value="Design is tolerable..... But I wont say there's great effort behind!!">
+                           <i class="fa-solid fa-face-meh large"></i>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="design" value="GG in designing bro!">
+                            <i class="fa-solid fa-face-smile large"></i>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="design" value="I'm impressed with the design dooood, You rock!">
+                            <i class="fa-solid fa-grin-stars large"></i>
                         </label>
                     </div>
                 </div>
-
+                
+                
                 <div class="field">
+                    <label class="label">
+                        Idea and Implementation
+                    </label>
                     <div class="control">
-                        <label class="radio">
-                            <input type="radio" name="question">
-                            Yes
+                        <label class="radio is-danger">
+                            <input type="radio" name="impl" value="Such a time waste, u shuld have done something useful.">
+                           <i class="fa-solid fa-face-frown large"></i>
                         </label>
                         <label class="radio">
-                            <input type="radio" name="question">
-                            No
+                            <input type="radio" name="impl" value="I'd say....Just another parser....so mediocre!">
+                           <i class="fa-solid fa-face-meh large"></i>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="impl" value="I could save sometime using this tool.">
+                            <i class="fa-solid fa-face-smile large"></i>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="impl" value="I could see the motive and the efforts put in this!!">
+                            <i class="fa-solid fa-grin-stars large"></i>
                         </label>
                     </div>
                 </div>
 
                 <div class="field is-grouped is-grouped-right">
                     <div class="control">
-                        <button class="button is-link is-outlined is-fullwidth" onclick="doShit()">Send Message</button>
+                        <button class="button is-link is-outlined is-fullwidth" onclick="submitMessage()">Send Message</button>
                     </div>
                 </div>
 
             </div>
-            <div class="card-content">
+            <div>
                 <footer class="card-footer">
-                <span class="icon card-footer-item is-medium has-text-info">
-                    <i class="fa fa-facebook-official"></i>
-                </span>
-                <span class="icon card-footer-item is-medium has-text-success">
-                    <i class="fa fa-instagram"></i>
-                </span>
-                <span class="icon card-footer-item is-medium has-text-warning">
-                    <a href="https://www.google.com">
-                    <i class="fa fa-snapchat"></i>
-                    </a>
-                </span>
-                <span class="icon card-footer-item is-medium has-text-danger">
-                    <i class="fa fa-linkedin"></i>
-                </span>
+                    <span class="card-footer-item has-text-danger">
+                        <a href="https://sathiyajith.github.io/">
+                            <i class="fa fa-address-card large"></i>
+                        </a>
+                    </span>
+                    <span class=" card-footer-item has-text-info">
+                        <a href="https://www.instagram.com/ks_jith19/">
+                            <i class="fa fa-instagram large"></i>
+                        </a>
+                    </span>
+                    <span class=" card-footer-item has-text-success">
+                        <a href="https://www.linkedin.com/in/sathiyajith-k-s-952012169/">
+                            <i class="fa fa-linkedin large"></i>
+                        </a>
+                    </span>
+                    <span class="card-footer-item has-text-warning">
+                        <a href="https://github.com/sathiyajith?tab=repositories">
+                            <i class="fa fa-github large"></i>
+                        </a>
+                    </span>
                 </footer>
             </div>
         </div>

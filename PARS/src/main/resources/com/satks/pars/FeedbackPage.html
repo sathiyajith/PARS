@@ -3,61 +3,90 @@
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="FeedbackPage.css">
+        <link rel="stylesheet" href="bulma.min.css">
+        <script src="FeedbackPage.js"></script>
     </head>
 
     <body>
 
-        <div class="w3-content w3-container w3-padding-64" id="contact">
+        <div id="contact" class="panel">
+            <p class="panel-heading"><em>I'd love your feedback!</em></p>
+            <div class="card-content">
 
-            <p class="w3-center"><em>I'd love your feedback!</em></p>
+                <p class="subtitle">Leave me a note</p>
 
-            <div class="w3-row w3-padding-32 w3-section">
-                <div class="w3-col m4 w3-container">
-                    <img src="/w3images/map.jpg" class="w3-image w3-round" style="width:100%">
-                </div>
-
-                <div class="w3-col m8 w3-panel">
-
-                    <div class="w3-large w3-margin-bottom">
-                        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Chicago, US<br>
-                        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +00 151515<br>
-                        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: mail@mail.com<br>
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input class="input" type="text">
                     </div>
-
-                    <p>Leave me a note:</p>
-
-                    <form action="/action_page.php" target="_blank">
-                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                            <div class="w3-half">
-                                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-                            </div>
-                            <div class="w3-half">
-                                <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-                            </div>
-                        </div>
-                        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-                        <button class="w3-button w3-black w3-right w3-section" type="submit">
-                            <i class="fa fa-paper-plane"></i> SEND MESSAGE
-                        </button>
-                    </form>
                 </div>
+
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input class="input" type="email">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Message</label>
+                    <div class="control">
+                        <textarea class="textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            I agree to the <a href="#">terms and conditions</a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="question">
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="question">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <button class="button is-link is-outlined is-fullwidth" onclick="doShit()">Send Message</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-content">
+                <footer class="card-footer">
+                <span class="icon card-footer-item is-medium has-text-info">
+                    <i class="fa fa-facebook-official"></i>
+                </span>
+                <span class="icon card-footer-item is-medium has-text-success">
+                    <i class="fa fa-instagram"></i>
+                </span>
+                <span class="icon card-footer-item is-medium has-text-warning">
+                    <a href="https://www.google.com">
+                    <i class="fa fa-snapchat"></i>
+                    </a>
+                </span>
+                <span class="icon card-footer-item is-medium has-text-danger">
+                    <i class="fa fa-linkedin"></i>
+                </span>
+                </footer>
             </div>
         </div>
-
-        <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
-            <div class="w3-xlarge w3-section">
-                <i class="fa fa-facebook-official w3-hover-opacity"></i>
-                <i class="fa fa-instagram w3-hover-opacity"></i>
-                <i class="fa fa-snapchat w3-hover-opacity"></i>
-                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-                <i class="fa fa-twitter w3-hover-opacity"></i>
-                <i class="fa fa-linkedin w3-hover-opacity"></i>
-            </div>
-        </footer>
 
     </body>
 </html>

@@ -8,8 +8,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="FeedbackPage.css">
         <link rel="stylesheet" href="bulma.min.css">
-        <script src="FeedbackPage.js"></script>
-        <script src="https://kit.fontawesome.com/5004a071a1.js" crossorigin="anonymous"></script>
+        <script src="formhandler.js"></script>
     </head>
 
     <body>
@@ -23,79 +22,76 @@
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
-                        <input class="input" id="name" type="text">
+                        <input class="input" id="name" name="name" type="text">
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                        <input class="input" id="email" type="email">
+                <form class="gform" data-email="sathiyajith19@gmail.com" method="POST" action="https://script.google.com/macros/s/AKfycbwVQInl4tGQRSh0FUVvMIHSBFnEty-tP6KYxvnF8xH69GIEJYajRIRWgSgEXZlGpSBw9Q/exec">
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" id="email" name="email" type="email">
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Message</label>
-                    <div class="control">
-                        <textarea class="textarea" id="message" rows="2" placeholder="Any suggestions"></textarea>
+                    <div class="field">
+                        <label class="label">Message</label>
+                        <div class="control">
+                            <textarea class="textarea" id="message" rows="2" name="message" placeholder="Any suggestions"></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">
-                        Design
-                    </label>
-                    <div class="control">
-                        <label class="radio">
-                            <input type="radio" name="design" value="Design is not good bro! You gotta improve.">
-                           <i class="fa-solid fa-face-frown large"></i>
+                    <div class="field">
+                        <label class="label">
+                            Design
                         </label>
-                        <label class="radio">
-                            <input type="radio" name="design" value="Design is tolerable..... But I wont say there's great effort behind!!">
-                           <i class="fa-solid fa-face-meh large"></i>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="design" value="GG in designing bro!">
-                            <i class="fa-solid fa-face-smile large"></i>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="design" value="I'm impressed with the design dooood, You rock!">
-                            <i class="fa-solid fa-grin-stars large"></i>
-                        </label>
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="design" value="Design is not good bro! You gotta improve.">
+                                <i class="fa-solid fa-face-frown large"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="design" value="Design is tolerable..... But I wont say there's any great effort behind!!">
+                                <i class="fa-solid fa-face-meh large"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="design" value="I'm impressed with the design dooood, You rock!">
+                                <i class="fa-solid fa-grin-stars large"></i>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                
-                
-                <div class="field">
-                    <label class="label">
-                        Idea and Implementation
-                    </label>
-                    <div class="control">
-                        <label class="radio is-danger">
-                            <input type="radio" name="impl" value="Such a time waste, u shuld have done something useful.">
-                           <i class="fa-solid fa-face-frown large"></i>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="impl" value="I'd say....Just another parser....so mediocre!">
-                           <i class="fa-solid fa-face-meh large"></i>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="impl" value="I could save sometime using this tool.">
-                            <i class="fa-solid fa-face-smile large"></i>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="impl" value="I could see the motive and the efforts put in this!!">
-                            <i class="fa-solid fa-grin-stars large"></i>
-                        </label>
-                    </div>
-                </div>
 
-                <div class="field is-grouped is-grouped-right">
-                    <div class="control">
-                        <button class="button is-link is-outlined is-fullwidth" onclick="submitMessage()">Send Message</button>
-                    </div>
-                </div>
 
+                    <div class="field">
+                        <label class="label">
+                            Idea and Implementation
+                        </label>
+                        <div class="control">
+                            <label class="radio is-danger">
+                                <input type="radio" name="impl" value="Such a time waste, u shuld have done something useful.">
+                                <i class="fa-solid fa-face-frown large"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="impl" value="I'd say....It's just another parser....so mediocre!">
+                                <i class="fa-solid fa-face-meh large"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="impl" value="I could see the motive and all the efforts put in this!!">
+                                <i class="fa-solid fa-grin-stars large"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <button class="button is-link is-outlined is-fullwidth">Send Message</button>
+                        </div>
+                    </div>
+                    <div style="display:none" class="thankyou_message">
+                        <!-- You can customize the thankyou message by editing the code below -->
+                        <h2><em>Thanks</em> for the note!!
+                        </h2>
+                    </div>
+                </form>
             </div>
             <div>
                 <footer class="card-footer">

@@ -13,5 +13,5 @@ function submitMessage()
     //console.log(design_rating);
     //console.log(impl_rating);
     var content = `From: ${name} \nEmail: ${email} \nDesign rating: ${design_rating} \nImplementation :${impl_rating}`;
-    window.location.href="www.google.com";
+    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=sathiyajith19@gmail.com");
 }

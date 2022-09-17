@@ -21,9 +21,9 @@
                      </font>
                   </Label>
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#loadUploadPage" prefHeight="150.0" prefWidth="200.0" styleClass="buttons" text="Upload" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#loadValidatePage" prefHeight="150.0" prefWidth="200.0" styleClass="buttons" text="Validate" />
                   <Button layoutX="10.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#loadVisualizePage" prefHeight="150.0" prefWidth="200.0" styleClass="buttons" text="Visualize" />
                   <Button layoutX="10.0" layoutY="510.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#loadFeedbackPage" prefHeight="150.0" prefWidth="200.0" styleClass="buttons" text="Feedback" />
-                  <Button layoutX="10.0" layoutY="710.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#loadUpgradePage" prefHeight="150.0" prefWidth="200.0" styleClass="buttons" text="Upgrade" />
                </children>
             </VBox>
          </left>

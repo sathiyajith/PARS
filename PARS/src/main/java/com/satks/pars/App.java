@@ -19,7 +19,8 @@ public class App extends Application {
         root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         Scene landingScene = new Scene(root, 1500, 800);
         primaryStage.setScene(landingScene);
-        primaryStage.setTitle("PASV");
+        primaryStage.setTitle("PARS");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

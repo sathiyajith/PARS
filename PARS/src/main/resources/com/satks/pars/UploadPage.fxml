@@ -107,7 +107,7 @@
                                     <Insets bottom="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="812.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addRule" prefHeight="30.0" prefWidth="30.0" styleClass="plus" text="+" textAlignment="CENTER">
+                              <Button fx:id="plusButtonFx" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="812.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addRule" prefHeight="30.0" prefWidth="30.0" styleClass="plus" text="+" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

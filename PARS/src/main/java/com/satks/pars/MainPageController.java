@@ -39,9 +39,9 @@ public class MainPageController implements Initializable {
     }
     
     @FXML
-    private void loadUpgradePage(MouseEvent event)
+    private void loadValidatePage(MouseEvent event)
     {
-        loadPage("UpgradePage.fxml");
+        loadPage("ValidatePage.fxml");
     }
     
     private void loadPage(String page)

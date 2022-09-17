@@ -16,6 +16,9 @@ ToDo:
 14. Finetune regular expressions
 15. Add cool svgs
 16. Learn and do the build.
+17. Remove json parameter from setReceiver and setRoute functions and refactor them.
+18. Enable validate and visualize buttons at right times.
+
 
 Done:
 
@@ -26,3 +29,4 @@ Done:
 5. Refactor to "PARS" (Prometheus Alerts Routing Simulation)
 6. Add "+" button and logic to add multiple rule files.
 7. Make a lot of input testcases and test with them.
+8. Fix the "+" button bug (Shouldnt increment immediately, idea - disable and enable at appropriate time)

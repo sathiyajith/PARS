@@ -42,7 +42,8 @@ public class UploadPageController implements Initializable {
     private GridPane uploadpageFx;
     @FXML
     private VBox ruleBoxFx;
-    
+    @FXML
+    private Button plusButtonFx;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -121,6 +122,7 @@ public class UploadPageController implements Initializable {
             rulePath = file.getPath();
             Label rulePathFx = (Label)App.root.lookup("#rulePathFx"+App.numRules);
             rulePathFx.setText(rulePath);
+            plusButtonFx.setDisable(false);
         }
     }
     
@@ -173,6 +175,7 @@ public class UploadPageController implements Initializable {
         ruleBoxFx.getChildren().add(controlBox);
         ruleBoxFx.setSpacing(10);
         ruleBoxFx.setPadding(new Insets(10,10,10,10));
+        plusButtonFx.setDisable(true);
     }
     
  

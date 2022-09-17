@@ -62,7 +62,7 @@ public class AlertManager {
     public String groupInterval;
     public String defaultReceiver;
     public final static AlertManager instance = new AlertManager();
-        
+    public static JSONObject json;    
    
     public void setConfig(String config)
     {
@@ -91,7 +91,7 @@ public class AlertManager {
     {
         Yaml yaml = new Yaml();
         Map<String, Object> obj = yaml.load(this.config);
-        JSONObject json = new JSONObject(obj);
+        json = new JSONObject(obj);
         //System.out.println(json);    
         setReceivers(json);
         setRoutes(json);

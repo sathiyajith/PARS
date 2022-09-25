@@ -1,7 +1,7 @@
 ToDo:
 
 1. Dynamically resize elements. Fix the MinWidth, MinHeight, MaxWidth and MaxHeight.
-2. Add Yaml Validation with the existing SnakeYaml. 
+2. Add Yaml Validation with the existing SnakeYaml - Validate function (v2.0.0)
 3. Add "continue: true" logic
 4. Add Dark mode.
 5. Add reset button.
@@ -13,12 +13,14 @@ ToDo:
 11. Add FontAwesome icons to buttons.
 12. Design other pages.
 13. Add logic for inhibit_rules (But that is tough, since you have to filter and disable.)
-14. Finetune regular expressions
+14. Finetune regular expressions (v2.0.0)
 15. Add cool svgs
-16. Learn and do the build.
-17. Remove json parameter from setReceiver and setRoute functions and refactor them.
-18. Enable validate and visualize buttons at right times.
-
+16. Remove json parameter from setReceiver and setRoute functions and refactor them.
+17. Enable validate and visualize buttons at right times.
+18. Add correct screenshots and arch diagram (v2.0.0)
+19. Add suggestions in validate page.
+20. Test with wrong-alertmanager.yaml and catch mistakes (v2.0.0).
+21. Add timer to calculate frequency of alert (This is difficult though.)
 
 Done:
 
@@ -29,4 +31,5 @@ Done:
 5. Refactor to "PARS" (Prometheus Alerts Routing Simulation)
 6. Add "+" button and logic to add multiple rule files.
 7. Make a lot of input testcases and test with them.
-8. Fix the "+" button bug (Shouldnt increment immediately, idea - disable and enable at appropriate time)
+8. Fix the "+" button bug. (Shouldnt increment immediately, idea - disable and enable at appropriate time.)
+9. Learn and do the build.

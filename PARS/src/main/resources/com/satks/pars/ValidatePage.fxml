@@ -12,12 +12,12 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0">
+            <VBox fx:id="validityContentsFx" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="sections">
+                  <HBox fx:id="alertmanagerFx" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="sections">
                      <children>
-                        <Label styleClass="titles" text="Label" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label styleClass="titles" text="AlertManager" />
+                        <ImageView fx:id="alertmanagerImageFx" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>

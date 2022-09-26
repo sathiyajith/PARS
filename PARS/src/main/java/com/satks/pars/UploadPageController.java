@@ -177,12 +177,5 @@ public class UploadPageController implements Initializable {
         ruleBoxFx.setPadding(new Insets(10,10,10,10));
         plusButtonFx.setDisable(true);
     }
-    
- 
-
-    
-    
-
-
-    
+   
 }

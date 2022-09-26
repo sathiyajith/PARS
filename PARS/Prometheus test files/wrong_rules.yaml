@@ -10,11 +10,11 @@
   # This rule can be very noisy in dynamic infra with legitimate container start/stop/deployment.
   - alert: ContainerAbsent
     expr: absent(container_last_seen)
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Container absent (instance {{ $labels.instance }})
+for: 5m
+  labels:
+    severity: warning
+ annotations:
+  summary: Container absent (instance {{ $labels.instance }})
       description: "A container is absent for 5 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
   - alert: HostOutOfMemory

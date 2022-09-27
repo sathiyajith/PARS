@@ -1,6 +1,6 @@
 # PARS  :star:
 
-## Overview
+## Overview 	:red_envelope:
 
 As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used to simulate Prometheus alerts. This is built using JavaFx as a Desktop application and runs on wide variety of systems like Windows, macOS and Linux Operating systems.
 

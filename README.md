@@ -23,8 +23,8 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 5. Click on Map button to map receivers and routes.
 
 ## Few Instances of the tool
-<img align="left" width="45%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
-<img align="right" width="45%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
+<img align="left" width="50%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
+<img align="right" width="50%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
 
 
 <img align="left" width="45%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_3.png">

@@ -16,13 +16,17 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 
 ## Instructions :closed_book:
 
-1. Select Upload from the Dashboard and Upload the Alertmanager Config file and Thanos rules file in Upload Page.
-2. Click on Visualize to view the set of receivers and routes.
-3. Click on Map button to map receivers and routes.
+1. Upload the Alertmanager Config file and click on submit.
+2. Upload the thanos rules files and click on submit. After submitting plus button will be enabled to add additional files.
+3. Click on Validate to verify whether the uploaded yaml files are valid.
+4. Click on Visualize to view the set of receivers and routes.
+5. Click on Map button to map receivers and routes.
 
 ## Few Instances of the tool
-<img align="left" width="480" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
-<img align="center" width="480" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
+<img align="left" width="450" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
+<img align="center" width="450" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
+<img align="left" width="450" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_3.png">
+<img align="center" width="450" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_4.png">
 
 ##  HyperLinks :paperclip:
 Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie]

@@ -25,6 +25,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 ## Few Instances of the tool
 <img align="left" width="480" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
 <img align="right" width="480" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_2.png">
+<br/>
 <img align="left" width="480" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_3.png">
 <img align="right" width="480" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_4.png">
 

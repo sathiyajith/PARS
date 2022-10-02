@@ -2,11 +2,26 @@
     expr: mysql_up == 0
     for: 0m
     labels:
-      severity: critical
-      service: database
+      service: foo1
     annotations:
       summary: MySQL down (instance {{ $labels.instance }})
       description: "MySQL instance is down on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: MysqlRestarted
+    expr: mysql_global_status_uptime < 60
+    for: 0m
+    labels:
+      service: baz
+    annotations:
+      summary: MySQL restarted (instance {{ $labels.instance }})
+      description: "MySQL has just been restarted, less than one minute ago on {{ $labels.instance }}.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: MysqlInnodbLogWaits
+    expr: rate(mysql_global_status_innodb_log_waits[15m]) > 10
+    for: 0m
+    labels:
+      color: violet
+    annotations:
+      summary: MySQL InnoDB log waits (instance {{ $labels.instance }})
+      description: "MySQL innodb log writes stalling\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
   - alert: MysqlTooManyConnections(>80%)
     expr: max_over_time(mysql_global_status_threads_connected[1m]) / mysql_global_variables_max_connections * 100 > 80
     for: 2m

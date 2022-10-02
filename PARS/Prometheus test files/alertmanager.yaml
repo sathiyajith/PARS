@@ -16,7 +16,7 @@ route:
         - service=~"foo1|foo2|baz"
       receiver: team-X-mails
     - matchers:
-        - service=~"zookeeper"
+        - service="zookeeper"
       receiver: team-X-slacks
     - matchers:
         - service="database"

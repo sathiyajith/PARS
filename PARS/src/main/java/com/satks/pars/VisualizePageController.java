@@ -134,7 +134,8 @@ public class VisualizePageController implements Initializable {
             {
                 String labelKey = matcherConditions.get(j).keySet().toArray()[0].toString();
                 String labelValue = matcherConditions.get(j).getString(labelKey);
-                
+                //System.out.println(labelKey);
+                //System.out.println(labelValue);
                 if (root.getChild(labelKey)!=null)
                 {
                     if (root.getChild(labelKey).getChild(labelValue)!=null)
@@ -168,40 +169,53 @@ public class VisualizePageController implements Initializable {
             Node alertNameNode = new Node(alert.getAlertName());
             JSONObject labels = alert.getLabels();
             Set labelKeySet = labels.keySet();
+            Boolean matched = false;
             for (Object labelKeyObject : labelKeySet )
             {
                 String labelKey = labelKeyObject.toString();
                 String labelValue = labels.getString(labelKey);
                 //System.out.println(labelKey);
                 //System.out.println(labelValue);
+                
                 if (root.getChild(labelKey)!=null)
                 {
-                    if (root.getChild(labelKey).getChild(labelValue)!=null)
+                    if (!root.getChild(labelKey).getChildren().isEmpty())
                     {
-                        if (!root.getChild(labelKey).getChild(labelValue).getChildren().isEmpty())
+                        for (Node matcherRegexNode : root.getChild(labelKey).getChildren())
                         {
-                            for (Node receiverNode : root.getChild(labelKey).getChild(labelValue).getChildren())
+                            String matcherRegex = matcherRegexNode.getName();
+                            System.out.println(matcherRegex);
+                            if(matcherRegex.equals(labelValue) || labelValue.matches(matcherRegex))
                             {
-                                receiverNode.addChild(alertNameNode);
+                                System.out.println("matches with: "+matcherRegex);
+                                if (!matcherRegexNode.getChildren().isEmpty())
+                                {
+                                    for (Node receiverNode : matcherRegexNode.getChildren())
+                                    {    
+                                        receiverNode.addChild(alertNameNode);
+                                        matched = true;
+                                    }
+                                }
+                                else
+                                {
+                                    System.out.println("No Receiver, but label key and label value is present!"+alertNameNode.getName());
+                                }
                             }
-                        }
-                        else
-                        {
-                            System.out.println("Fails here1!"+alertNameNode.getName());
-                            defaultReceiver.addChild(alertNameNode);
-                        }
+                        } 
                     }
                     else
                     {
-                        System.out.println("Fails here2!"+alertNameNode.getName());
-                        defaultReceiver.addChild(alertNameNode);
+                        System.out.println("No label value, but label key is present!"+alertNameNode.getName());
                     }
                 }
                 else
                 {
-                    System.out.println("Fails here3!"+alertNameNode.getName());
-                    defaultReceiver.addChild(alertNameNode);
+                    System.out.println("No label key!"+alertNameNode.getName());
                 }
+            }
+            if(!matched)
+            {
+                defaultReceiver.addChild(alertNameNode);
             }
          }
     }

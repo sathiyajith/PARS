@@ -12,6 +12,12 @@ public class ThanosRuleParser {
     public final static ThanosRuleParser instance = new ThanosRuleParser();
     private ArrayList obj;
     private static  List<Boolean> validity = new ArrayList<>();
+    private String text;
+    private Yaml yaml;
+    private JSONObject alertObject;
+    private String alertName;
+    private int thresholdPeriod;
+    private JSONObject labels;
 
     public void setRule(String rulefile) {
         ParseConfig(removeUnwantedLines(rulefile));
@@ -29,13 +35,13 @@ public class ThanosRuleParser {
 
     public String removeUnwantedLines(String rules) {
         //String text = rules.replaceAll("(?m)expr:.*|(?m)#.*", "").replaceAll("(?m)annotations:.*", "").replaceAll("(?m)summary:.*", "").replaceAll("(?m)description:.*", "").replaceAll("(?m)VALUE.*", "").replaceAll("(?m)LABELS.*", "").replaceAll("(?m)^[ \\t]*\\r?\\n","");
-        String text = rules.replaceAll("(?m)expr:.*|(?m)#.*|(?m)annotations:.*|(?m)summary:.*|(?m)description:.*|(?m)VALUE.*|(?m)LABELS.*", "").replaceAll("(?m)^[ \\t]*\\r?\\n", "");
+        text = rules.replaceAll("(?m)expr:.*|(?m)#.*|(?m)annotations:.*|(?m)summary:.*|(?m)description:.*|(?m)VALUE.*|(?m)LABELS.*", "").replaceAll("(?m)^[ \\t]*\\r?\\n", "");
         //System.out.println(text);
         return text;
     }
 
     public void ParseConfig(String rulefile) {
-        Yaml yaml = new Yaml();
+        yaml = new Yaml();
         try {
             obj = yaml.load(rulefile);
         } catch (Exception e) {
@@ -46,10 +52,10 @@ public class ThanosRuleParser {
                 validity.add(Boolean.TRUE);
                 //System.out.println(obj);
                 for (int i = 0; i < obj.size(); i++) {
-                    JSONObject alertObject = new JSONObject(obj.get(i).toString().replaceAll("=", ":"));
-                    String alertName = alertObject.getString("alert");
-                    int thresholdPeriod = Integer.parseInt(alertObject.getString("for").replace("m", ""));
-                    JSONObject labels = alertObject.getJSONObject("labels");
+                    alertObject = new JSONObject(obj.get(i).toString().replaceAll("=", ":"));
+                    alertName = alertObject.getString("alert");
+                    thresholdPeriod = Integer.parseInt(alertObject.getString("for").replace("m", ""));
+                    labels = alertObject.getJSONObject("labels");
                     //System.out.println(alertName);
                     //System.out.println(thresholdPeriod);
                     //System.out.println(labels);

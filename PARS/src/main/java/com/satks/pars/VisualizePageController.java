@@ -55,7 +55,25 @@ public class VisualizePageController implements Initializable {
     private VBox receiverBox;
     private ImageView serviceImageView;
     private FileInputStream imageStream;
-
+    private Label receiver;
+    private Label rule;
+    private Route route;
+    private Node receiverNameNode;
+    private List<JSONObject> matcherConditions;
+    private String labelKey;
+    private String labelValue;
+    private Node labelValueNode;
+    private Node labelKeyNode;
+    private Alert alert;
+    private Node alertNameNode;
+    private JSONObject labels;
+    private Set labelKeySet;
+    private Boolean isMatched;
+    private String matcherRegex;
+    private Node receiverNode;
+    private Label receiverLabel;
+    private Label alertLabel;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -105,7 +123,7 @@ public class VisualizePageController implements Initializable {
            serviceImageView = new ImageView(new Image(imageStream));
            serviceImageView.setFitHeight(40);
            serviceImageView.setFitWidth(40);
-           Label receiver = new Label(receivers.get(i).getReceiverName(), serviceImageView);
+           receiver = new Label(receivers.get(i).getReceiverName(), serviceImageView);
            receiver.setPrefWidth(500);
            receiver.setPrefHeight(500);
            receiver.getStyleClass().add("items");
@@ -114,7 +132,7 @@ public class VisualizePageController implements Initializable {
        
        for (int i = 0; i < rules.size(); i++) 
        {
-           Label rule = new Label(rules.get(i).getAlertName());
+           rule = new Label(rules.get(i).getAlertName());
            rule.getStyleClass().add("items");
            rule.setPrefWidth(500);
            rule.setPrefHeight(500);
@@ -126,14 +144,14 @@ public class VisualizePageController implements Initializable {
     {
         for(int i=0;i<routes.size();i++)
          {
-            Route route = routes.get(i);
-            Node receiverNameNode = new Node(route.getReceiverName());
+            route = routes.get(i);
+            receiverNameNode = new Node(route.getReceiverName());
             receiverNodeList.add(receiverNameNode);
-            List<JSONObject> matcherConditions = route.getMatcherConditions();
+            matcherConditions = route.getMatcherConditions();
             for(int j=0;j<matcherConditions.size();j++)
             {
-                String labelKey = matcherConditions.get(j).keySet().toArray()[0].toString();
-                String labelValue = matcherConditions.get(j).getString(labelKey);
+                labelKey = matcherConditions.get(j).keySet().toArray()[0].toString();
+                labelValue = matcherConditions.get(j).getString(labelKey);
                 //System.out.println(labelKey);
                 //System.out.println(labelValue);
                 if (root.getChild(labelKey)!=null)
@@ -144,15 +162,15 @@ public class VisualizePageController implements Initializable {
                     }
                     else
                     {
-                        Node labelValueNode = new Node(labelValue);
+                        labelValueNode = new Node(labelValue);
                         labelValueNode.addChild(receiverNameNode);
                         root.getChild(labelKey).addChild(labelValueNode);
                     }
                 }
                 else
                 {
-                    Node labelKeyNode = new Node(labelKey);
-                    Node labelValueNode = new Node(labelValue);
+                    labelKeyNode = new Node(labelKey);
+                    labelValueNode = new Node(labelValue);
                     labelValueNode.addChild(receiverNameNode);
                     labelKeyNode.addChild(labelValueNode);
                     root.addChild(labelKeyNode);
@@ -165,15 +183,15 @@ public class VisualizePageController implements Initializable {
     {
          for(int i=0;i<alertsList.size();i++)
          {
-            Alert alert = alertsList.get(i);
-            Node alertNameNode = new Node(alert.getAlertName());
-            JSONObject labels = alert.getLabels();
-            Set labelKeySet = labels.keySet();
-            Boolean matched = false;
+            alert = alertsList.get(i);
+            alertNameNode = new Node(alert.getAlertName());
+            labels = alert.getLabels();
+            labelKeySet = labels.keySet();
+            isMatched = false;
             for (Object labelKeyObject : labelKeySet )
             {
-                String labelKey = labelKeyObject.toString();
-                String labelValue = labels.getString(labelKey);
+                labelKey = labelKeyObject.toString();
+                labelValue = labels.getString(labelKey);
                 //System.out.println(labelKey);
                 //System.out.println(labelValue);
                 
@@ -183,17 +201,15 @@ public class VisualizePageController implements Initializable {
                     {
                         for (Node matcherRegexNode : root.getChild(labelKey).getChildren())
                         {
-                            String matcherRegex = matcherRegexNode.getName();
-                            System.out.println(matcherRegex);
+                            matcherRegex = matcherRegexNode.getName();
                             if(matcherRegex.equals(labelValue) || labelValue.matches(matcherRegex))
                             {
-                                System.out.println("matches with: "+matcherRegex);
                                 if (!matcherRegexNode.getChildren().isEmpty())
                                 {
                                     for (Node receiverNode : matcherRegexNode.getChildren())
                                     {    
                                         receiverNode.addChild(alertNameNode);
-                                        matched = true;
+                                        isMatched = true;
                                     }
                                 }
                                 else
@@ -213,7 +229,7 @@ public class VisualizePageController implements Initializable {
                     System.out.println("No label key!"+alertNameNode.getName());
                 }
             }
-            if(!matched)
+            if(!isMatched)
             {
                 defaultReceiver.addChild(alertNameNode);
             }
@@ -234,20 +250,20 @@ public class VisualizePageController implements Initializable {
     {
         for (int i = 0; i < receiverNodeList.size(); i++) 
         {
-           Node receiver = receiverNodeList.get(i);
+           receiverNode = receiverNodeList.get(i);
            receiverBox = new VBox();
            receiverBox.getStyleClass().add("columns");
            receiverBox.setMinWidth(300);
            receiverBox.setAlignment(Pos.TOP_CENTER);
            //receiverBox.setFillWidth(true);
            
-           Label receiverLabel = new Label(receiver.getName());
+           receiverLabel = new Label(receiverNode.getName());
            receiverLabel.getStyleClass().add("titles");
            receiverBox.getChildren().add(receiverLabel);
            
-           for(Node x : receiver.getChildren())
+           for(Node x : receiverNode.getChildren())
            {
-                Label alertLabel = new Label(x.getName());
+                alertLabel = new Label(x.getName());
                 alertLabel.getStyleClass().add("items");
                 alertLabel.setMinWidth(300);
                 receiverBox.getChildren().add(alertLabel);
@@ -262,12 +278,12 @@ public class VisualizePageController implements Initializable {
         receiverBox.getStyleClass().add("columns");
         receiverBox.setMinWidth(300);
         receiverBox.setAlignment(Pos.TOP_CENTER);
-        Label receiverLabel = new Label(defaultReceiver.getName());
+        receiverLabel = new Label(defaultReceiver.getName());
         receiverLabel.getStyleClass().add("titles");
         receiverBox.getChildren().add(receiverLabel);
         for(Node x : defaultReceiver.getChildren())
         {
-                Label alertLabel = new Label(x.getName());
+                alertLabel = new Label(x.getName());
                 alertLabel.getStyleClass().add("items");
                 alertLabel.setMinWidth(300);
                 receiverBox.getChildren().add(alertLabel);
@@ -282,7 +298,5 @@ public class VisualizePageController implements Initializable {
         fillColumnReceivers();
         fillColumnDefaultReceiver();  
     }
-    
-    
     
 }

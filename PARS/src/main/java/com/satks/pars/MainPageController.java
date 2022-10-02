@@ -19,6 +19,7 @@ public class MainPageController implements Initializable {
    
     @FXML
     private StackPane textArea;
+    private Parent root;
     
     @FXML
     private void loadUploadPage(MouseEvent event)
@@ -47,7 +48,7 @@ public class MainPageController implements Initializable {
     private void loadPage(String page)
     {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(page));
+            root = FXMLLoader.load(getClass().getResource(page));
             textArea.getChildren().setAll(root);
         } catch (IOException ex) {
             Logger.getLogger("This page failed to load!! "+page).log(Level.SEVERE, null, ex);

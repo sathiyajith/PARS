@@ -21,6 +21,9 @@ import javafx.scene.layout.VBox;
 public class ValidatePageController implements Initializable {
     
     private Boolean alertmanagerValidity;
+    private File file;
+    private HBox alertsValidityBox;
+    private Label ruleLabel;
     
     @FXML
     private HBox alertmanagerFx;
@@ -37,7 +40,7 @@ public class ValidatePageController implements Initializable {
         alertmanagerValidity = AlertManager.getInstance().getValidity();
         System.out.println(alertmanagerValidity);
                 
-        File file = new File("D:\\code\\GITHUB_Projects\\PARS\\res\\correct.png");
+        file = new File("D:\\code\\GITHUB_Projects\\PARS\\res\\correct.png");
         Image correctImage = new Image(file.toURI().toString());
         
         file = new File("D:\\code\\GITHUB_Projects\\PARS\\res\\wrong.png");
@@ -61,8 +64,8 @@ public class ValidatePageController implements Initializable {
         
         for(int i=0;i<ThanosRuleParser.getValidity().size();i++)
         {
-            HBox alertsValidityBox = new HBox();
-            Label ruleLabel = new Label("Alert Rule "+(i+1));
+            alertsValidityBox = new HBox();
+            ruleLabel = new Label("Alert Rule "+(i+1));
             ruleLabel.getStyleClass().add("titles");
             ImageView alertImageFx = new ImageView();
             alertImageFx.setFitHeight(40);

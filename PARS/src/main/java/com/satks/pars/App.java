@@ -12,12 +12,13 @@ public class App extends Application {
 
     public static int numRules = 0;
     public static Parent root;
+    private Scene landingScene;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
         
         root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        Scene landingScene = new Scene(root, 1500, 800);
+        landingScene = new Scene(root, 1500, 800);
         primaryStage.setScene(landingScene);
         primaryStage.setTitle("PARS");
         primaryStage.setResizable(false);

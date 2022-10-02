@@ -57,6 +57,18 @@ public class AlertManager {
     public static JSONObject json;
     private Map<String, Object> obj=null;
     private Boolean validity = false;
+    private Yaml yaml;
+    private JSONArray receiverArray;
+    private JSONObject receiverItem;
+    private String receiverName;
+    private String receiverService;
+    private JSONArray routesArray;
+    private JSONObject routeItem;
+    private JSONArray matchers;
+    private List<JSONObject> matcherConditions;
+    private String[] matcher ;
+    private JSONObject matcherObject;
+    
 
     public void setConfig(String config) {
         this.config = config;
@@ -82,7 +94,7 @@ public class AlertManager {
     
 
     public void ParseConfig() {
-        Yaml yaml = new Yaml();
+        yaml = new Yaml();
         try {
             obj = yaml.load(this.config);
         } catch (Exception e) {
@@ -101,11 +113,11 @@ public class AlertManager {
     
 
     public void setReceivers(JSONObject json) {
-        JSONArray receiverArray = json.getJSONArray("receivers");
+        receiverArray = json.getJSONArray("receivers");
         for (int i = 0; i < receiverArray.length(); i++) {
-            JSONObject receiverItem = receiverArray.getJSONObject(i);
-            String receiverName = receiverItem.getString("name");
-            String receiverService = receiverItem.keySet().toArray()[1].toString();
+            receiverItem = receiverArray.getJSONObject(i);
+            receiverName = receiverItem.getString("name");
+            receiverService = receiverItem.keySet().toArray()[1].toString();
             receivers.add(new Receiver(receiverName, receiverService));
         }
     }
@@ -113,15 +125,15 @@ public class AlertManager {
     public void setRoutes(JSONObject json) {
         defaultReceiver = json.getJSONObject("route").getString("receiver");
         repeatInterval = json.getJSONObject("route").getString("repeat_interval");
-        JSONArray routesArray = json.getJSONObject("route").getJSONArray("routes");
+        routesArray = json.getJSONObject("route").getJSONArray("routes");
         for (int i = 0; i < routesArray.length(); i++) {
-            JSONObject routeItem = routesArray.getJSONObject(i);
-            String receiverName = routeItem.getString("receiver");
-            JSONArray matchers = routeItem.getJSONArray("matchers");
-            List<JSONObject> matcherConditions = new ArrayList<>();
+            routeItem = routesArray.getJSONObject(i);
+            receiverName = routeItem.getString("receiver");
+            matchers = routeItem.getJSONArray("matchers");
+            matcherConditions = new ArrayList<>();
             for (int j = 0; j < matchers.length(); j++) {
-                String[] matcher = matchers.getString(j).split("=");
-                JSONObject matcherObject = new JSONObject().put(matcher[0], matcher[1].replaceAll("~", "").replaceAll("\"", ""));
+                matcher = matchers.getString(j).split("=");
+                matcherObject = new JSONObject().put(matcher[0], matcher[1].replaceAll("~", "").replaceAll("\"", ""));
                 matcherConditions.add(matcherObject);
             }
             //System.out.println(matcherConditions);

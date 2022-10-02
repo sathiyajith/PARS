@@ -2,7 +2,6 @@ package com.satks.pars;
 
 import com.satks.pars.Prometheus.AlertManager;
 import com.satks.pars.Prometheus.ThanosRuleParser;
-import com.satks.pars.App;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,6 +34,12 @@ public class UploadPageController implements Initializable {
     private File file;
     private FileChooser fileChooser;
     private FileReader reader;
+    private char[] chars;
+    private Label rulePathFx;
+    private Label path;
+    private Button browse;
+    private Button submit;
+    private HBox controlBox;
     
     @FXML
     private Label configFilePathFx;
@@ -71,7 +76,7 @@ public class UploadPageController implements Initializable {
         reader = null;
         try {
             reader = new FileReader(file);
-            char[] chars = new char[(int) file.length()];
+            chars = new char[(int) file.length()];
             reader.read(chars);
             content = new String(chars);
             reader.close();
@@ -120,7 +125,7 @@ public class UploadPageController implements Initializable {
             thanos = ThanosRuleParser.getInstance();
             thanos.setRule(content);
             rulePath = file.getPath();
-            Label rulePathFx = (Label)App.root.lookup("#rulePathFx"+App.numRules);
+            rulePathFx = (Label)App.root.lookup("#rulePathFx"+App.numRules);
             rulePathFx.setText(rulePath);
             plusButtonFx.setDisable(false);
         }
@@ -135,7 +140,7 @@ public class UploadPageController implements Initializable {
         path.getStyleClass().add("paths");
         path.setId("rulePathFx"+App.numRules);
         
-        Button browse = new Button("BROWSE");
+        browse = new Button("BROWSE");
         browse.setPrefHeight(30);
         browse.setPrefWidth(100);
         browse.getStyleClass().add("controls");
@@ -150,7 +155,7 @@ public class UploadPageController implements Initializable {
             } 
         });
         
-        Button submit = new Button("SUBMIT");
+        submit = new Button("SUBMIT");
         submit.setPrefHeight(30);
         submit.setPrefWidth(100);
         submit.getStyleClass().add("controls");
@@ -161,7 +166,7 @@ public class UploadPageController implements Initializable {
             } 
         });
         
-        HBox controlBox = new HBox();
+        controlBox = new HBox();
         controlBox.getStyleClass().add("controls-bar");
         controlBox.setPrefHeight(50);
         controlBox.setPrefWidth(900);

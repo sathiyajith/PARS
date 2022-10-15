@@ -12,10 +12,12 @@ public class AlertManager {
 
         public String name;
         public String service;
+        public Boolean continueVar;
 
-        public Receiver(String name, String service) {
+        public Receiver(String name, String service, Boolean continueVar) {
             this.name = name;
             this.service = service;
+            this.continueVar = continueVar;
         }
 
         public String getReceiverName() {
@@ -24,6 +26,10 @@ public class AlertManager {
 
         public String getService() {
             return this.service;
+        }
+        
+        public Boolean getContinue() {
+            return this.continueVar;
         }
     }
 
@@ -35,6 +41,7 @@ public class AlertManager {
         public Route(String receiverName, List<JSONObject> matcherConditions) {
             this.receiverName = receiverName;
             this.matcherConditions = matcherConditions;
+            
         }
 
         public String getReceiverName() {
@@ -44,7 +51,6 @@ public class AlertManager {
         public List<JSONObject> getMatcherConditions() {
             return this.matcherConditions;
         }
-
     }
 
     private final List<Receiver> receivers = new ArrayList<>();
@@ -68,6 +74,7 @@ public class AlertManager {
     private List<JSONObject> matcherConditions;
     private String[] matcher ;
     private JSONObject matcherObject;
+    private Boolean continueVar;
     
 
     public void setConfig(String config) {
@@ -118,7 +125,22 @@ public class AlertManager {
             receiverItem = receiverArray.getJSONObject(i);
             receiverName = receiverItem.getString("name");
             receiverService = receiverItem.keySet().toArray()[1].toString();
-            receivers.add(new Receiver(receiverName, receiverService));
+            if(receiverItem.has("continue"))
+            {
+                if (receiverItem.getString("continue").equals("true"))
+                {
+                    continueVar = true;
+                }
+                else
+                {
+                    continueVar = false;
+                }
+            }
+            else
+            {
+                continueVar = false;
+            }
+            receivers.add(new Receiver(receiverName, receiverService, continueVar));
         }
     }
 

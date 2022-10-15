@@ -1,26 +1,21 @@
 ToDo:
 
 1. Dynamically resize elements. Fix the MinWidth, MinHeight, MaxWidth and MaxHeight.
-2. Add Yaml Validation with the existing SnakeYaml - Validate function (v2.0.0)
-3. Add "continue: true" logic
-4. Add Dark mode.
-5. Add reset button.
-6. Handle UI cases when switched between pages before mapping and pertain values.
-7. Lookout for better Data model and reduce mapping complexity.
-8. Make a UI guide with the layout's widths and heights to alter in future.
-9. Add comments.
-10. Make use of other factors like repeat_interval. 
-11. Add FontAwesome icons to buttons.
-12. Design other pages.
-13. Add logic for inhibit_rules (But that is tough, since you have to filter and disable.)
-14. Finetune regular expressions (v2.0.0)
-15. Add cool svgs
-16. Remove json parameter from setReceiver and setRoute functions and refactor them.
-17. Enable validate and visualize buttons at right times.
-18. Add correct screenshots and arch diagram (v2.0.0)
-19. Add suggestions in validate page.
-20. Test with wrong-alertmanager.yaml and catch mistakes (v2.0.0).
-21. Add timer to calculate frequency of alert (This is difficult though.)
+2. Add "continue: true" logic
+3. Add Dark mode.
+4. Add reset button.
+5. Handle UI cases when switched between pages before mapping and pertain values.
+6. Lookout for better Data model and reduce mapping complexity.
+7. Make a UI guide with the layout's widths and heights to alter in future.
+8. Add comments to improve readability of source code.
+9. Make use of other factors like repeat_interval. 
+10. Add FontAwesome icons to buttons.
+11. Add logic for inhibit_rules (But that is tough, since you have to filter and disable).
+12. Add cool svgs
+13. Remove json parameter from setReceiver() and setRoute() functions and refactor them.
+14. Enable validate and visualize buttons at right times.
+15. Add suggestions in validate page.
+16. Add timer to calculate frequency of alert (This is difficult though.)
 
 Done:
 
@@ -33,3 +28,8 @@ Done:
 7. Make a lot of input testcases and test with them.
 8. Fix the "+" button bug. (Shouldnt increment immediately, idea - disable and enable at appropriate time.)
 9. Learn and do the build.
+10. Add Yaml Validation with the existing SnakeYaml - Validate function (v2.0.0)
+11. Design other pages.
+12. Finetune regular expressions (v2.0.0)
+13. Add correct screenshots and arch diagram (v2.0.0)
+14. Test with wrong-alertmanager.yaml and catch mistakes (v2.0.0).

@@ -1,16 +1,28 @@
-# PARS  :star:
+# PARS :star:
 
-## Overview 	:red_envelope:
+## Overview :red_envelope:
 
 As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used to simulate Prometheus alerts. This is built using JavaFx as a Desktop application and runs on wide variety of systems like Windows, macOS and Linux Operating systems.
 
-## Working :gear:
+## Prometheus Overview :fire:
+
 - Alertmanager handles alerts sent by client applications such as Prometheus server. The Alertmanager configuration consists of the Receivers and Routes definitions. 
-- Receivers are the various notification integrations like Slack, Pagerduty, Email, Webhooks etc. that receive notifications when an alert is sent.
-- Routes map the alerts to corresponding receivers based on key-value pairs called MatcherConditions.
-- Alerts are defined in several Thanos rule files with key-value pairs called Labels. These labels must match with the MatcherConditions to reach the correct receiver. If the labels do not match with any of the MatcherConditions, it is directed to the Default Receiver. Please refer to the below diagram for clarity.
+- Receivers are various notification integrations like Slack, Pagerduty, Email, Webhooks etc. that receive notifications when an alert is triggered.
+- Routes map the alerts to corresponding receivers based on key-value attributes called MatcherConditions.
+- Alerts are defined in Thanos rule files with key-value attributes called Labels. These labels must match with the MatcherConditions to reach the correct receiver. If the labels do not match with any of the MatcherConditions, it is directed to the Default Receiver. Please refer to the below diagram for clarity.
 - The frequency of the alert and other features like silencing, inhibition, grouping and repetition are also governed by the Alertmanager configuration.
-- This tool simulates few functionalities of Alertmanager and provides a basic picture of how Alerts are mapped to Receivers.
+
+## Working and Features :gear:
+
+- This tool parses the config and rules files. (Ignores comments if there are any!)
+- Validates the yaml files for any indentation errors.
+- Identifies the type of route (PD/Slack/Webhook/Email)
+- Provides a picture of how Alerts are mapped to Receivers.
+- It can handle labels/MatcherConditions with regex too.
+- Implemented "continue:true" and Default Receiver logic in the routing.
+- Note: Deprecated features are not added in this tool. Features like silencing, inhibition that affect the frequency of alerts are considered as special cases and so ignored. 
+
+## Architecture :world_map:
 
 <img align="center" width="555" height="570" src="https://github.com/sathiyajith/PASV/blob/main/res/Architecture%20Diagram.png">
 

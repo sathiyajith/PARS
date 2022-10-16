@@ -14,10 +14,10 @@ public class AlertManager {
         public String service;
         public Boolean continueVar;
 
-        public Receiver(String name, String service, Boolean continueVar) {
+        public Receiver(String name, String service) {
             this.name = name;
             this.service = service;
-            this.continueVar = continueVar;
+            this.continueVar = false;
         }
 
         public String getReceiverName() {
@@ -26,6 +26,11 @@ public class AlertManager {
 
         public String getService() {
             return this.service;
+        }
+        
+        public void setContinue()
+        {
+            this.continueVar = true;
         }
         
         public Boolean getContinue() {
@@ -37,10 +42,12 @@ public class AlertManager {
 
         public List<JSONObject> matcherConditions;
         public String receiverName;
+        public Boolean continueVar;
 
-        public Route(String receiverName, List<JSONObject> matcherConditions) {
+        public Route(String receiverName, List<JSONObject> matcherConditions, Boolean continueVar) {
             this.receiverName = receiverName;
             this.matcherConditions = matcherConditions;
+            this.continueVar = continueVar;
             
         }
 
@@ -50,6 +57,10 @@ public class AlertManager {
 
         public List<JSONObject> getMatcherConditions() {
             return this.matcherConditions;
+        }
+        
+        public Boolean getContinue() {
+            return this.continueVar;
         }
     }
 
@@ -111,7 +122,7 @@ public class AlertManager {
             if (obj != null) {
                 this.validity = true;
                 json = new JSONObject(obj);
-                //System.out.println(json);    
+                System.out.println(json);    
                 setReceivers(json);
                 setRoutes(json); 
             }
@@ -125,22 +136,8 @@ public class AlertManager {
             receiverItem = receiverArray.getJSONObject(i);
             receiverName = receiverItem.getString("name");
             receiverService = receiverItem.keySet().toArray()[1].toString();
-            if(receiverItem.has("continue"))
-            {
-                if (receiverItem.getString("continue").equals("true"))
-                {
-                    continueVar = true;
-                }
-                else
-                {
-                    continueVar = false;
-                }
-            }
-            else
-            {
-                continueVar = false;
-            }
-            receivers.add(new Receiver(receiverName, receiverService, continueVar));
+            
+            receivers.add(new Receiver(receiverName, receiverService));
         }
     }
 
@@ -158,9 +155,24 @@ public class AlertManager {
                 matcherObject = new JSONObject().put(matcher[0], matcher[1].replaceAll("~", "").replaceAll("\"", ""));
                 matcherConditions.add(matcherObject);
             }
+            if(routeItem.has("continue"))
+            {
+                if (routeItem.getBoolean("continue"))
+                {
+                    continueVar = true;
+                }
+                else
+                {
+                    continueVar = false;
+                }
+            }
+            else
+            {
+                continueVar = false;
+            }
             //System.out.println(matcherConditions);
             //System.out.println(receiverService);
-            routes.add(new Route(receiverName, matcherConditions));
+            routes.add(new Route(receiverName, matcherConditions,continueVar));
         }
     }
 

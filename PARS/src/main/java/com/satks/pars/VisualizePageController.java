@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,17 +44,17 @@ public class VisualizePageController implements Initializable {
     private ThanosRuleParser thanos;
     private List<AlertManager.Route> routes;
     private List<AlertManager.Receiver> receivers;
+    private AlertManager.Receiver receiver;
     private ArrayList<Alert> rules;
     private final static Node root = new Node("root");
     private static Node defaultReceiver = null;
     private static ArrayList<Alert> alertsList;
-    private static ArrayList<AlertManager.Receiver> receiversList;
     private final static ArrayList<Node> receiverNodeList = new ArrayList<>();
     private String repeatInterval;
     private VBox receiverBox;
     private ImageView serviceImageView;
     private FileInputStream imageStream;
-    private Label receiver;
+    private Label receiverFx;
     private Label rule;
     private Route route;
     private Node receiverNameNode;
@@ -73,6 +72,7 @@ public class VisualizePageController implements Initializable {
     private Node receiverNode;
     private Label receiverLabel;
     private Label alertLabel;
+    private String receiverName;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -123,11 +123,11 @@ public class VisualizePageController implements Initializable {
            serviceImageView = new ImageView(new Image(imageStream));
            serviceImageView.setFitHeight(40);
            serviceImageView.setFitWidth(40);
-           receiver = new Label(receivers.get(i).getReceiverName(), serviceImageView);
-           receiver.setPrefWidth(500);
-           receiver.setPrefHeight(500);
-           receiver.getStyleClass().add("items");
-           receiversBoxFx.getChildren().add(receiver);
+           receiverFx = new Label(receivers.get(i).getReceiverName(), serviceImageView);
+           receiverFx.setPrefWidth(500);
+           receiverFx.setPrefHeight(500);
+           receiverFx.getStyleClass().add("items");
+           receiversBoxFx.getChildren().add(receiverFx);
        }
        
        for (int i = 0; i < rules.size(); i++) 
@@ -140,12 +140,30 @@ public class VisualizePageController implements Initializable {
        }      
     }
     
+    private AlertManager.Receiver findReceiverByName(String receiverName)
+    {
+        for (AlertManager.Receiver currReceiver : receivers) 
+        {
+            if (currReceiver.getReceiverName().equals(receiverName)) 
+            {
+                return currReceiver;
+            }
+        }
+        return null;
+    }
+    
     private void setReceiverNodes(List<AlertManager.Route> routes)
     {
         for(int i=0;i<routes.size();i++)
          {
             route = routes.get(i);
-            receiverNameNode = new Node(route.getReceiverName());
+            receiverName = route.getReceiverName();
+            if(route.getContinue())
+            {
+                receiver = findReceiverByName(receiverName);
+                receiver.setContinue();
+            }
+            receiverNameNode = new Node(receiverName);
             receiverNodeList.add(receiverNameNode);
             matcherConditions = route.getMatcherConditions();
             for(int j=0;j<matcherConditions.size();j++)
@@ -185,6 +203,7 @@ public class VisualizePageController implements Initializable {
          {
             alert = alertsList.get(i);
             alertNameNode = new Node(alert.getAlertName());
+            System.out.println(alertNameNode.getName());
             labels = alert.getLabels();
             labelKeySet = labels.keySet();
             isMatched = false;
@@ -208,14 +227,26 @@ public class VisualizePageController implements Initializable {
                                 {
                                     for (Node receiverNode : matcherRegexNode.getChildren())
                                     {    
+                                        System.out.println(receiverNode.getName());
                                         receiverNode.addChild(alertNameNode);
                                         isMatched = true;
+                                        receiver = findReceiverByName(receiverNode.getName());
+                                        if(receiver.getContinue()==false && isMatched)
+                                        {
+                                            System.out.println("Continue condition breaks at the receiver level");
+                                            break;
+                                        }
                                     }
                                 }
                                 else
                                 {
                                     System.out.println("No Receiver, but label key and label value is present!"+alertNameNode.getName());
                                 }
+                            }
+                            if(receiver.getContinue()==false && isMatched)
+                            {
+                                System.out.println("Continue condition breaks at the label value level");
+                                break;
                             }
                         } 
                     }
@@ -227,6 +258,11 @@ public class VisualizePageController implements Initializable {
                 else
                 {
                     System.out.println("No label key!"+alertNameNode.getName());
+                }
+                if(receiver.getContinue()==false && isMatched)
+                {
+                    System.out.println("Continue condition breaks at the label key level");
+                    break;
                 }
             }
             if(!isMatched)

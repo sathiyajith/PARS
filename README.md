@@ -6,7 +6,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 
 ## Prometheus Overview :fire:
 
-- Alertmanager handles alerts sent by client applications such as Prometheus server. The Alertmanager configuration consists of the Receivers and Routes definitions. 
+- Alertmanager handles alerts sent by client applications such as Prometheus server. The [Alertmanager configuration](https://prometheus.io/docs/alerting/latest/configuration/) consists of the Receivers and Routes definitions. 
 - Receivers are various notification integrations like Slack, Pagerduty, Email, Webhooks etc. that receive notifications when an alert is triggered.
 - Routes map the alerts to corresponding receivers based on key-value attributes called MatcherConditions.
 - Alerts are defined in Thanos rule files with key-value attributes called Labels. These labels must match with the MatcherConditions to reach the correct receiver. If the labels do not match with any of the MatcherConditions, it is directed to the Default Receiver. Please refer to the below diagram for clarity.
@@ -20,7 +20,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 - Provides a picture of how Alerts are mapped to Receivers.
 - It can handle labels/MatcherConditions with regex too.
 - Implemented "continue:true" and Default Receiver logic in the routing.
-- Note: Deprecated features are not added in this tool. Features like silencing, inhibition that affect the frequency of alerts are considered as special cases and so ignored. 
+- Note: Deprecated features are not added in this tool. Features like silencing, inhibition that affect the frequency of alerts are considered as special cases and so ignored. Alert routes heirarchy is not handled so far.
 
 ## Architecture :world_map:
 
@@ -29,7 +29,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 ## Instructions :closed_book:
 
 1. Upload the Alertmanager Config file and click on submit.
-2. Upload the thanos rules files and click on submit. After submitting plus button will be enabled to add additional files.
+2. Upload the first Thanos rules file and click on submit. After submitting plus button will be enabled to add additional files.
 3. Click on Validate to verify whether the uploaded yaml files are valid.
 4. Click on Visualize to view the set of receivers and routes.
 5. Click on Map button to map receivers and routes.
@@ -45,6 +45,6 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 ##  HyperLinks :paperclip:
 Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie]
 
-If you wish to contribute to this project, you can go thru the To-Do tasks and ping me.
+If you wish to contribute to this project, you can go thru the [To-Do tasks](https://github.com/sathiyajith/PARS/blob/main/res/ToDo.txt) and ping me.
 
 (July 31 - now)

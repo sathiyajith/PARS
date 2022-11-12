@@ -4,7 +4,7 @@
 
 As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used to simulate Prometheus alerts. This is built using JavaFx as a Desktop application and runs on wide variety of systems like Windows, macOS and Linux Operating systems.
 
-## Prometheus Overview :fire:
+## Prometheus Overview 
 
 - Alertmanager handles alerts sent by client applications such as Prometheus server. The [Alertmanager configuration](https://prometheus.io/docs/alerting/latest/configuration/) consists of the Receivers and Routes definitions. 
 - Receivers are various notification integrations like Slack, Pagerduty, Email, Webhooks etc. that receive notifications when an alert is triggered.

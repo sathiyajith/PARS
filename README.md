@@ -20,11 +20,12 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 - Provides a picture of how Alerts are mapped to Receivers.
 - It can handle labels/MatcherConditions with regex too.
 - Implemented "continue:true" and Default Receiver logic in the routing.
+
 - Note: Deprecated features are not added in this tool. Features like silencing, inhibition that affect the frequency of alerts are considered as special cases and so ignored. Alert routes heirarchy is not handled so far.
 
 ## Architecture :world_map:
 
-<img src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_1.png">
+![Architecture Diagram](https://github.com/sathiyajith/PARS/blob/0211030ef769e271dbe7850482c826db7bb263c8/res/snippet_1.png)
 
 ## Instructions :closed_book:
 

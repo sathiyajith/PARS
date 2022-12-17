@@ -7,6 +7,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 ## Prometheus Overview 
 
 <img align="right" src="https://github.com/sathiyajith/PARS/blob/main/res/prometheus.png">
+
 - Alertmanager handles alerts sent by client applications such as Prometheus server. The [Alertmanager configuration](https://prometheus.io/docs/alerting/latest/configuration/) consists of the Receivers and Routes definitions. 
 - Receivers are various notification integrations like Slack, Pagerduty, Email, Webhooks etc. that receive notifications when an alert is triggered.
 - Routes map the alerts to corresponding receivers based on key-value attributes called MatcherConditions.

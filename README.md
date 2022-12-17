@@ -12,6 +12,8 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 - Alerts are defined in Thanos rule files with key-value attributes called Labels. These labels must match with the MatcherConditions to reach the correct receiver. If the labels do not match with any of the MatcherConditions, it is directed to the Default Receiver. Please refer to the below diagram for clarity.
 - The frequency of the alert and other features like silencing, inhibition, grouping and repetition are also governed by the Alertmanager configuration.
 
+<img align="center" width="555" height="570" src="https://github.com/sathiyajith/PARS/blob/main/res/prometheus.png">
+
 ## Working and Features :gear:
 
 - This tool parses the config and rules files. (Ignores comments if there are any!)

@@ -20,7 +20,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 
 - This tool parses the config and rules files. (Ignores comments if there are any!)
 - Validates the yaml files for any indentation errors.
-- Identifies the type of route (PD/Slack/Webhook/Email)
+- Identifies the type of receiver (PD/Slack/Webhook/Email)
 - Provides a picture of how Alerts are mapped to Receivers.
 - It can handle labels/MatcherConditions with regex too.
 - Implemented "continue:true" and Default Receiver logic in the routing.

@@ -48,7 +48,7 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 <img align="center" width="48%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_4.png">
 
 ##  HyperLinks :paperclip:
-Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie]
+Video Link : [https://www.youtube.com/watch?v=LOIbc1FvPWU]
 
 If you wish to contribute to this project, you can go thru the [To-Do tasks](https://github.com/sathiyajith/PARS/blob/main/res/ToDo.txt) and ping me.
 

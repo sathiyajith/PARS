@@ -52,4 +52,4 @@ Video Link : [https://drive.google.com/open?id=1nfijHLwoez5a6ttDLaJIi4uxTz2ma1Ie
 
 If you wish to contribute to this project, you can go thru the [To-Do tasks](https://github.com/sathiyajith/PARS/blob/main/res/ToDo.txt) and ping me.
 
-(July 31 - now)
+(31st July - 19th December 22)

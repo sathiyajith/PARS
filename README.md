@@ -25,7 +25,6 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 - It can handle labels/MatcherConditions with regex too.
 - Implemented "continue:true" and Default Receiver logic in the routing.
 
-- Note: Deprecated features are not added in this tool. Features like silencing, inhibition that affect the frequency of alerts are considered as special cases and so ignored. Alert routes heirarchy is not handled so far.
 
 ## Architecture :world_map:
 
@@ -46,6 +45,13 @@ As the name suggests, PARS (Prometheus Alert Routing Simulation) is a tool used 
 
 <img align="left" width="48%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_3.png">
 <img align="center" width="48%" height="289" src="https://github.com/sathiyajith/PASV/blob/main/res/snippet_4.png">
+
+## Future Enhancements :right_anger_bubble:	
+1. Add Timer to visualize how long the alert stays in a receiver.
+2. Add "Acknowledge" and "Resolve" buttons.
+3. Add Templates to make use of .tmpl files to visualize how each alert looks like.
+4. Add other features like silencing, inhibition, grouping and repetition.
+
 
 ##  HyperLinks :paperclip:
 Video Link : [https://www.youtube.com/watch?v=LOIbc1FvPWU]
